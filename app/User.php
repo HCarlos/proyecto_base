@@ -89,6 +89,7 @@ class User extends Authenticatable
         return $this->id;
     }
 
+
     public function getFullNameAttribute() {
         return "{$this->ap_paterno} {$this->ap_materno} {$this->nombre}";
     }

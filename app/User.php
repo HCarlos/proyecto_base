@@ -85,8 +85,6 @@ class User extends Authenticatable
         return $this->filename == '' ? true : false;
     }
 
-
-
     public function scopeMyID(){
         return $this->id;
     }

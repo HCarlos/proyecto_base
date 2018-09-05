@@ -49,7 +49,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
+            'username' => 'required|string|max:255|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
@@ -63,10 +63,22 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
+        $ip   = $_SERVER['REMOTE_ADDR'];
+        $host = gethostbyaddr($_SERVER['REMOTE_ADDR']);
+        $idemp = 1;
+        $user = User::create([
+            'name' => $data['username'],
+            'username' => strtolower($data['username']),
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'password' => bcrypt($data['password']),
+            'idemp' => $idemp,
+            'ip' => $ip,
+            'host' => $host,
         ]);
+        $role = Role::where('name', 'user')->first();
+        $user->roles()->attach($role);
+        return $user;
+
     }
+
 }

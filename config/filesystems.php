@@ -51,7 +51,7 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'url' => env('APP_URL').'/imagenes',
             'visibility' => 'public',
         ],
 
@@ -63,6 +63,36 @@ return [
             'bucket' => env('AWS_BUCKET'),
             'url' => env('AWS_URL'),
         ],
+
+        'profile' => [
+            'driver' => env('PROFILE_DRIVER'),
+            'root' => public_path().env('PROFILE_ROOT'),
+            'url' => env('APP_URL').env('PROFILE_URL'),
+            'visibility' => env('PROFILE_VISIBILITY'),
+        ],
+
+        'producto' => [
+            'driver' => env('PRODUCTO_DRIVER'),
+            'root' => public_path().env('PRODUCTO_ROOT'),
+            'url' => env('APP_URL').env('PRODUCTO_URL'),
+            'visibility' => env('PRODUCTO_VISIBILITY'),
+        ],
+
+        'paquete' => [
+            'driver' => env('PAQUETE_DRIVER'),
+            'root' => public_path().env('PAQUETE_ROOT'),
+            'url' => env('APP_URL').env('PAQUETE_URL'),
+            'visibility' => env('PAQUETE_VISIBILITY'),
+        ],
+
+        'externo' => [
+            'driver' => env('EXTERNO_DRIVER'),
+            'root' => public_path().env('EXTERNO_ROOT'),
+            'url' => env('APP_URL').env('EXTERNO_URL'),
+            'visibility' => env('EXTERNO_VISIBILITY'),
+        ],
+
+
 
     ],
 

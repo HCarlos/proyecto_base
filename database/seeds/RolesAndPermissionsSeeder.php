@@ -130,7 +130,6 @@ class RolesAndPermissionsSeeder extends Seeder
         $user->nombre = 'Administrador';
         $user->username = 'Admin';
         $user->email = 'admin@example.com';
-        $user->cuenta = '20182404130814';
         $user->password = bcrypt('secret');
         $user->admin = true;
         $user->idemp = $idemp;
@@ -145,7 +144,6 @@ class RolesAndPermissionsSeeder extends Seeder
         $user->nombre = 'System Operator';
         $user->username = 'SysOp';
         $user->email = 'sysop@example.com';
-        $user->cuenta = '20181907130824';
         $user->password = bcrypt('sysop');
         $user->admin = false;
         $user->idemp = $idemp;
@@ -160,7 +158,6 @@ class RolesAndPermissionsSeeder extends Seeder
         $user->ap_paterno = 'Profesor';
         $user->username = 'Profesor';
         $user->email = 'profesor@example.com';
-        $user->cuenta = '20182404130901';
         $user->password = bcrypt('secret');
         $user->idemp = $idemp;
         $user->ip = $ip;
@@ -174,7 +171,6 @@ class RolesAndPermissionsSeeder extends Seeder
         $user->ap_paterno = 'Alumno';
         $user->username = 'Alumno';
         $user->email = 'alumno@example.com';
-        $user->cuenta = '20182404130937';
         $user->password = bcrypt('secret');
         $user->idemp = $idemp;
         $user->ip = $ip;

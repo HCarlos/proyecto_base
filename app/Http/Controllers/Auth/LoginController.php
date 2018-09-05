@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -45,8 +46,8 @@ class LoginController extends Controller
     public function redirectPath()
     {
         $user = Auth::user();
-        if ( $user->hasRole(['Administrator',
-            'Sys_Op','Profesor', 'Alumno'
+        if ( $user->hasRole(['Admin',
+            'SysOp','Profesor', 'Alumno'
         ]) ){
             $this->redirectTo = '/home';
             return property_exists($this, 'redirectTo') ? $this->redirectTo : '/home';

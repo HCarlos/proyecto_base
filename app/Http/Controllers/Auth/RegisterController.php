@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Permission;
+use App\Role;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -75,8 +77,11 @@ class RegisterController extends Controller
             'ip' => $ip,
             'host' => $host,
         ]);
-        $role = Role::where('name', 'user')->first();
+        $role = Role::where('name', 'Profesor')->first();
         $user->roles()->attach($role);
+        $permission = Permission::where('name', 'consultar')->first();
+        $user->permissions()->attach($permission);
+
         return $user;
 
     }

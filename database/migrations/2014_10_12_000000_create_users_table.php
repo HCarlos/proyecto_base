@@ -48,7 +48,6 @@ class CreateUsersTable extends Migration
             $table->string('root',150)->default('')->nullable();
             $table->string('filename',50)->nullable();
             $table->unsignedInteger('iduser_ps')->nullable();
-            $table->string('cuenta',16)->default('')->unique();
             $table->boolean('admin')->default(false);
             $table->boolean('alumno')->default(false);
             $table->boolean('foraneo')->default(false);

@@ -26,7 +26,7 @@ class User extends Authenticatable
 
     protected $fillable = [
         'id',
-        'username', 'email', 'password','cuenta',
+        'username', 'email', 'password',
         'admin','alumno','foraneo','exalumno','credito',
         'dias_credito','limite_credito','saldo_a_favor','saldo_en_contra',
         'rfc','curp','razon_social','calle','num_ext','num_int',
@@ -105,15 +105,14 @@ class User extends Authenticatable
         }
         $search = strtoupper($search);
         $query->whereRaw("CONCAT(ap_paterno,' ',ap_materno,' ',nombre) like ?", "%{$search}%")
-            ->orWhere('email', 'like', "%{$search}%")
-            ->orWhere('cuenta', 'like', "%{$search}%");
+            ->orWhere('email', 'like', "%{$search}%");
 //            ->orWhereHas('team', function ($query) use ($search) {
 //                $query->where('name', 'like', "%{$search}%");
 //            });
     }
 
     public static function findOrCreateUserWithRole3(
-        string $cuenta, string $username, string $nombre, string $ap_paterno, string $ap_materno, string $email, string $password,
+        string $username, string $nombre, string $ap_paterno, string $ap_materno, string $email, string $password,
         bool $admin, bool $alumno, bool $foraneo, bool $exalumno, bool $credito, int $dias_credito, float $limite_credito,
         string $domicilio, string $celular, string $telefono,
         float $saldo_a_favor, float $saldo_en_contra, int $familia_cliente_id,
@@ -121,12 +120,8 @@ class User extends Authenticatable
         string $calle='', string $num_ext='', string $num_int='', string $colonia='', string $localidad='', string $estado='', string $pais='', string $cp='', string $curp='', string $rfc='', string $razon_social='',
         string $lugar_nacimiento='', Date $fecha_nacimiento=null, int $genero=null,
         string $ocupacion=''){
-        $user = static::all()->where('username', $username)->where('email', $email)->where('cuenta', $cuenta)->first();
+        $user = static::all()->where('username', $username)->where('email', $email)->first();
         if (!$user) {
-            if ($cuenta == ''){
-                $timex  = Carbon::now()->format('ymdHisu');
-                $cuenta =  substr($timex,0,16);
-            }
             if ($email == ''){
                 $email = $username.'@example.com';
             }
@@ -135,7 +130,6 @@ class User extends Authenticatable
             }
 
             $user = static::create([
-                'cuenta' => $cuenta,
                 'username'=>$username,
                 'nombre'=>$nombre,
                 'ap_paterno'=>$ap_paterno,

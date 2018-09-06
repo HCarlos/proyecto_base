@@ -43,6 +43,14 @@ class LoginController extends Controller
         return 'username';
     }
 
+/*
+     protected function authenticated(Request $request, $user)
+    {
+//        dd($request);
+    }
+
+*/
+
     public function redirectPath()
     {
         $user = Auth::user();

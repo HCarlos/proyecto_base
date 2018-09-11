@@ -13,11 +13,13 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 use App\Notifications\MyResetPassword;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use \Illuminate\Auth\Passwords\CanResetPassword;
 
 class User extends Authenticatable
 {
     use SoftDeletes;
     use Notifiable;
+    use CanResetPassword;
 //    use HasRolesAndAbilities;
     use HasRoles;
 
@@ -53,14 +55,6 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class);
     }
 
-//    public function empresas(){
-//        return $this->hasMany(Empresa::class);
-//    }
-//    public function empresa(){
-//        return $this->belongsTo(Empresa::class);
-//    }
-
-
     public function isAdmin(){
         return $this->admin;
     }
@@ -85,10 +79,17 @@ class User extends Authenticatable
         return $this->filename == '' ? true : false;
     }
 
+    public function IsFemale(){
+        return $this->genero == 0 ? true : false;
+    }
+
     public function scopeMyID(){
         return $this->id;
     }
 
+    public function scopeRole(){
+        return $this->roles()->first();
+    }
 
     public function getFullNameAttribute() {
         return "{$this->ap_paterno} {$this->ap_materno} {$this->nombre}";

@@ -43,6 +43,12 @@ class LoginController extends Controller
         return 'username';
     }
 
+    protected function guard()
+    {
+        return Auth::guard('web');
+    }
+
+
 /*
      protected function authenticated(Request $request, $user)
     {

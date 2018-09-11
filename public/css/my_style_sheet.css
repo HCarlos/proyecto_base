@@ -4,16 +4,6 @@
 
 
 
-html, body {
-	/*background-color: #fff;*/
-	color: #636b6f;
-	font-family: 'Raleway', sans-serif;
-	font-weight: 100;
-	height: 100vh;
-	margin: 0;
-}
-
-
 .full-height {
 	height: 100vh;
 }
@@ -33,11 +23,11 @@ html, body {
 	right: 10px;
 	top: 18px;
 }
-
+/*
 .content {
 	text-align: center;
 }
-
+*/
 .title {
 	font-size: 84px;
 }
@@ -176,7 +166,7 @@ ul.role-list-hrz li a {
 }
 
 .navbar-platsource{
-	background-color: darkcyan !important;
+	background-color: darkslategray !important;
 	height: 40px !important;
 }
 
@@ -188,7 +178,7 @@ ul.role-list-hrz li a {
 }
 
 .dropdown-menu > a:hover{
-	background-color: darkcyan !important;
+	background-color: darkslategray !important;
 	color: whitesmoke !important;
 	/*font-weight: bolder !important;*/
 }
@@ -233,41 +223,47 @@ ul.role-list-hrz li a {
 	text-decoration: none !important;
 	text-transform: uppercase !important;
 }
+
+.bar-menu-app-platsource{
+	/*background-color: #31708f !important;*/
+	color: whitesmoke !important;
+}
 .border-white-platsource{
-	border: whitesmoke solid 3px !important;
+	border: whitesmoke solid 2px !important;
+	border-radius:50% !important;
 }
 
 .panel-platsource {
-	border-color: darkcyan !important;
+	border-color: darkslategray !important;
 }
 .panel-platsource > .panel-heading {
 	color: whitesmoke !important;
-	background-color: darkcyan !important;
-	border-color: darkcyan !important;
+	background-color: darkslategray !important;
+	border-color: darkslategray !important;
 	font-weight: bolder;
 }
 .panel-platsource > .panel-heading + .panel-collapse .panel-body {
-	border-top-color: darkcyan !important;
+	border-top-color: darkslategray !important;
 }
 .panel-platsource > .panel-footer + .panel-collapse .panel-body {
-	border-bottom-color: darkcyan !important;
+	border-bottom-color: darkslategray !important;
 }
 
 .card-platsource {
-	border-color: darkcyan !important;
+	border-color: darkslategray !important;
 }
 .card-platsource > .card-header {
 	color: whitesmoke !important;
-	background-color: darkcyan !important;
-	border-color: darkcyan !important;
+	background-color: darkslategray !important;
+	border-color: darkslategray !important;
 	font-weight: bolder;
 }
 .card-platsource > .card-body {
-	border-top-color: darkcyan !important;
+	border-top-color: darkslategray !important;
 }
 
 .card-platsource > .card-boy > form > label {
-	color: darkcyan !important;
+	color: darkslategray !important;
 }
 .init-platsource{
 	color: whitesmoke !important;
@@ -390,6 +386,7 @@ fieldset[disabled] .btn-cafe.active {
 .font_Raleway_400{
     font-family: 'Raleway', sans-serif;
     font-weight: 400;
+
 }
 
 .wellcome-pos-twitter{

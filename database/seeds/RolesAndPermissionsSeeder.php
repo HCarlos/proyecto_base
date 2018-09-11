@@ -131,6 +131,7 @@ class RolesAndPermissionsSeeder extends Seeder
         $user->username = 'Admin';
         $user->email = 'admin@example.com';
         $user->password = bcrypt('secret');
+        $user->genero = 1;
         $user->admin = true;
         $user->idemp = $idemp;
         $user->ip = $ip;

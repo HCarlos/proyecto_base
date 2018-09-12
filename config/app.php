@@ -161,6 +161,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        Laravel\Passport\PassportServiceProvider::class,
+
         Spatie\Permission\PermissionServiceProvider::class,
         Collective\Remote\RemoteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,

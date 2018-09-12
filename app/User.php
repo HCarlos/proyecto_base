@@ -4,8 +4,10 @@ namespace App;
 
 use App\Http\Controllers\Funciones\FuncionesController;
 use Carbon\Carbon;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 //use Silber\Bouncer\Database\HasRolesAndAbilities;
 use Spatie\Permission\Models\Permission;
@@ -13,15 +15,11 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 use App\Notifications\MyResetPassword;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use \Illuminate\Auth\Passwords\CanResetPassword;
+//use \Illuminate\Auth\Passwords\CanResetPassword;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
-    use SoftDeletes;
-    use Notifiable;
-    use CanResetPassword;
-//    use HasRolesAndAbilities;
-    use HasRoles;
+    use SoftDeletes, HasApiTokens, Notifiable, HasRoles;
 
     protected $guard_name = 'web'; // or whatever guard you want to use
     protected $table = 'users';

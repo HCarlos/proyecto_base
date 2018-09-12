@@ -19,10 +19,10 @@ class VerificationController extends Controller
     |
     */
 
-    protected function guard()
-    {
-        return Auth::guard('web');
-    }
+//    protected function guard()
+//    {
+//        return Auth::guard('web');
+//    }
 
     use VerifiesEmails;
 

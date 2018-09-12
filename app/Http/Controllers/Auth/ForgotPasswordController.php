@@ -30,9 +30,6 @@ class ForgotPasswordController extends Controller
         $this->middleware('guest');
     }
 
-    protected function guard()
-    {
-        return Auth::guard('web');
-    }
+
 
 }

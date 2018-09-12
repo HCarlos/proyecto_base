@@ -136,6 +136,7 @@ class RolesAndPermissionsSeeder extends Seeder
         $user->idemp = $idemp;
         $user->ip = $ip;
         $user->host = $host;
+        $user->email_verified_at = now();
         $user->save();
         $user->roles()->attach($role_admin);
         $user->permissions()->attach($P0);
@@ -150,6 +151,7 @@ class RolesAndPermissionsSeeder extends Seeder
         $user->idemp = $idemp;
         $user->ip = $ip;
         $user->host = $host;
+        $user->email_verified_at = now();
         $user->save();
         $user->roles()->attach($role_sysop);
         $user->permissions()->attach($P13);
@@ -163,6 +165,7 @@ class RolesAndPermissionsSeeder extends Seeder
         $user->idemp = $idemp;
         $user->ip = $ip;
         $user->host = $host;
+        $user->email_verified_at = now();
         $user->save();
         $user->roles()->attach($role_profesor);
         $user->permissions()->attach($P6);
@@ -176,6 +179,7 @@ class RolesAndPermissionsSeeder extends Seeder
         $user->idemp = $idemp;
         $user->ip = $ip;
         $user->host = $host;
+        $user->email_verified_at = now();
         $user->save();
         $user->roles()->attach($role_alumno);
         $user->permissions()->attach($P6);

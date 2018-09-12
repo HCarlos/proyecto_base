@@ -15,7 +15,6 @@
                         <span><img src="{{ asset('images/web/logo-0.png') }}" alt="" height="40" width="160"></span>
                     </a>
                 </div>
-email
                 <!-- title-->
                 <h4 class="mt-0">Reset Password</h4>
                 <p class="text-muted mb-4">Ingresa tu cuenta de correo electrónico y te enviaremos un email con las indicaciones para resetear tu password.</p>
@@ -23,12 +22,12 @@ email
                 <!-- form -->
                 <form method="POST" action="{{ route('password.email') }}">
                     @csrf
-                    <div class="form-group mb-3">
+                    <div class="form-group mb-3 ">
                         <label for="email">Email</label>
-                        <input class="form-control" type="email" id="email" name="email" required placeholder="Ingresa tu email">
+                        <input class="form-control {{$errors->has('email')?'has-error form-error':''}}" type="email" id="email" name="email" value="" placeholder="Ingresa tu email">
                         @if ($errors->has('email'))
-                            <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                            <span class="has-error">
+                                        <strong class="text-danger">{{ $errors->first('email') }}</strong>
                                     </span>
                         @endif
                     </div>

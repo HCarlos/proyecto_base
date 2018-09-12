@@ -14,6 +14,11 @@ return [
     |
     */
 
+    'mailtrap' => [
+        'domain' => env('smtp.mailtrap.io'),
+        'secret' => env('MAILGUN_SECRET'),
+    ],
+
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),

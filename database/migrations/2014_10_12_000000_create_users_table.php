@@ -18,7 +18,6 @@ class CreateUsersTable extends Migration
             $table->string('username')->unique();
             $table->string('name')->nullable();
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('nombre')->nullable();
             $table->string('ap_paterno')->nullable();
@@ -64,6 +63,7 @@ class CreateUsersTable extends Migration
             $table->string('host',150)->default('')->nullable();
             $table->index('familia_cliente_id');
             $table->index('idemp');
+            $table->timestamp('email_verified_at')->nullable();
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();

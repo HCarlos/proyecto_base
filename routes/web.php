@@ -11,6 +11,8 @@
 |
 */
 
+//use Mail;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -48,3 +50,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('quitarFotoProfile/', 'Storage\StorageProfileController@quitarArchivoProfile')->name('quitarArchivoProfile/');
 
 });
+
+Route::get('enviar', ['as' => 'enviar', function () {
+$data = ['link' => 'http://platsource.mx'];
+    Mail::send('emails.notificacion', $data, function ($message) {
+        $message->from('manager@logydes.com.mx', 'Logydes.com.mx');
+        $message->to('logydes@gmail.com')->subject('Notificación');
+    });
+    return "Se envío el email";
+}]);

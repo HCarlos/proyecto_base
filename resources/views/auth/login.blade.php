@@ -24,21 +24,21 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="form-group">
-                            <label for="username">Username</label>
-                            <input class="form-control" type="text" id="username" name="username" required="" placeholder="Username">
+                            <label for="username" class="{{$errors->has('username')?'text-danger':''}}">Username</label>
+                            <input class="form-control {{$errors->has('username')?'has-error form-error':''}}" type="text" id="username" name="username" value="{{ old('username') }}" required placeholder="Username">
                             @if ($errors->has('username'))
-                                <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('username') }}</strong>
+                                <span class="has-error">
+                                        <strong class="text-danger">{{ $errors->first('username') }}</strong>
                                     </span>
                             @endif
                         </div>
                         <div class="form-group">
                             <a href="{{ route('password.request') }}" class="text-muted float-right"><small>Olvidaste tu password</small></a>
-                            <label for="password">Password</label>
-                            <input class="form-control" type="password" required="" id="password" name="password" placeholder="Enter your password">
+                            <label for="password" class="{{$errors->has('password')?'text-danger':''}}">Password</label>
+                            <input class="form-control {{$errors->has('password')?'has-error form-error':''}}" type="password" required="" id="password" name="password" placeholder="Password">
                             @if ($errors->has('password'))
-                                <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('password') }}</strong>
+                                <span class="has-error">
+                                        <strong class="text-danger">{{ $errors->first('password') }}</strong>
                                     </span>
                             @endif
                         </div>
@@ -62,11 +62,11 @@
         <!-- Auth fluid right content -->
         <div class="auth-fluid-right text-center">
             <div class="auth-user-testimonial">
-                <h2 class="mb-3">I love the color!</h2>
-                <p class="lead"><i class="mdi mdi-format-quote-open"></i> It's a elegent templete. I love it very much! . <i class="mdi mdi-format-quote-close"></i>
+                <h2 class="mb-3">{{env('NOMBRE_COLEGIO')}}</h2>
+                <p class="lead"><i class="mdi mdi-format-quote-open"></i>{{env('LEMA_CAMPANA')}}<i class="mdi mdi-format-quote-close"></i>
                 </p>
                 <p>
-                    - Hyper Admin User
+                    {{env('INFO_ONE')}}
                 </p>
             </div> <!-- end auth-user-testimonial-->
         </div>

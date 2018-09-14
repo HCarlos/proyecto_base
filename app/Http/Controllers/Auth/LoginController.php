@@ -49,28 +49,22 @@ class LoginController extends Controller
     }
 
 
-/*
-     protected function authenticated(Request $request, $user)
-    {
-//        dd($request);
-    }
-
-*/
 
     public function redirectPath()
     {
         $user = Auth::user();
-        if ( $user->hasRole(['Admin',
-            'SysOp','Profesor', 'Alumno'
-        ]) ){
-            $this->redirectTo = '/home';
-            return property_exists($this, 'redirectTo') ? $this->redirectTo : '/home';
+        $role = $user->hasRole(['Administrator', 'SysOp','Profesor', 'Alumno']);
+        if ( $role ){
+            $xxx = property_exists($this, 'redirectTo') ? $this->redirectTo : '/home';
+            return $xxx;
 //        }elseif( $user->hasRole('alumno') ){
 //            $this->redirectTo = '/home_alumno';
 //            return property_exists($this, 'redirectTo') ? $this->redirectTo : '/home_alumno';
 //        }elseif( $user->hasRole('administrator') ){
 //            $this->redirectTo = '/home';
 //            return property_exists($this, 'redirectTo') ? $this->redirectTo : '/home';
+        }else{
+            return '/home';
         }
 
 

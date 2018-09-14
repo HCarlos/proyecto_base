@@ -44,7 +44,7 @@
                 </div>
 
                 <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                <a href="{{url('edit')}}" class="dropdown-item notify-item">
                     <i class="mdi mdi-account-settings-variant"></i>
                     <span>Mi Perfil</span>
                 </a>

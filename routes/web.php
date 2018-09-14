@@ -41,11 +41,11 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::get('edit', 'Auth\EditUserDataController@showEditUserData')->name('edit');
-    Route::put('Edit', 'Auth\EditUserDataController@update')->name('Edit');
-    Route::get('showEditProfilePhoto/', 'Auth\EditUserDataController@showEditProfilePhoto')->name('showEditProfilePhoto/');
-    Route::get('showEditProfileEmail/', 'Auth\EditUserDataController@showEditProfileEmail')->name('showEditProfileEmail/');
-    Route::put('changeEmailUser/', 'Auth\EditUserDataController@changeEmailUser')->name('changeEmailUser/');
+    Route::get('edit', 'Catalogos\User\UserDataController@showEditUserData')->name('edit');
+    Route::put('Edit', 'Catalogos\User\UserDataController@update')->name('Edit');
+    Route::get('showEditProfilePhoto/', 'Catalogos\User\UserDataController@showEditProfilePhoto')->name('showEditProfilePhoto/');
+    Route::get('showEditProfileEmail/', 'Catalogos\User\UserDataController@showEditProfileEmail')->name('showEditProfileEmail/');
+    Route::put('changeEmailUser/', 'Catalogos\User\UserDataController@changeEmailUser')->name('changeEmailUser/');
 
     Route::post('subirFotoProfile/', 'Storage\StorageProfileController@subirArchivoProfile')->name('subirArchivoProfile/');
     Route::get('quitarFotoProfile/', 'Storage\StorageProfileController@quitarArchivoProfile')->name('quitarArchivoProfile/');

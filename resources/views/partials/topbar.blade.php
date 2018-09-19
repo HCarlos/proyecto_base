@@ -23,7 +23,7 @@
                             <img src="{{ asset('images/web/empty_user_male.png')  }}" width="28" height="28" class="img-circle border border-white"/>
                         @endif
                     @else
-                        <img src="{{ asset('archivos'.Auth::user()->root.Auth::user()->filename)  }}" width="40" height="40" class="img-circle border border-white "/>
+                        <img src="{{ asset('storage/'.Auth::user()->root.Auth::user()->filename)  }}" width="40" height="40" class="mr-3 d-none d-sm-block avatar-sm rounded-circle "/>
                     @endif
                 </span>
                 <span>
@@ -50,13 +50,13 @@
                 </a>
 
                 <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                <a href="{{url('showEditProfilePhoto')}}" class="dropdown-item notify-item">
                     <i class="mdi mdi-account-circle"></i>
                     <span>Mi Foto</span>
                 </a>
 
                 <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                <a href="{{url('showEditProfilePassword')}}" class="dropdown-item notify-item">
                     <i class="mdi mdi-account-key"></i>
                     <span>Mi Password</span>
                 </a>

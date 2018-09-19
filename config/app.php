@@ -170,7 +170,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Styde\Html\HtmlServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
-
+        App\Providers\ValidatorServiceProvider::class,
     ],
 
     /*

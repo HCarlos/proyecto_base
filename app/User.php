@@ -35,7 +35,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'ocupacion','lugar_trabajo',
         'root','filename','familia_cliente_id',
         'idemp','ip','host',
-        'nombre','ap_paterno','ap_materno','celular','telefono',
+        'nombre','ap_paterno','ap_materno','celular','telefono','iduser_ps',
     ];
 
     protected $hidden = ['password', 'remember_token',];

@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -53,8 +55,8 @@ class LoginController extends Controller
     public function redirectPath()
     {
         $user = Auth::user();
-        $role = $user->hasRole(['Administrator', 'SysOp','Profesor', 'Alumno']);
-        if ( $role ){
+        $role = $user->hasRole(['Administrator', 'SysOp', 'Profesor', 'Alumno']);
+        if ($role) {
             $xxx = property_exists($this, 'redirectTo') ? $this->redirectTo : '/home';
             return $xxx;
 //        }elseif( $user->hasRole('alumno') ){
@@ -63,11 +65,19 @@ class LoginController extends Controller
 //        }elseif( $user->hasRole('administrator') ){
 //            $this->redirectTo = '/home';
 //            return property_exists($this, 'redirectTo') ? $this->redirectTo : '/home';
-        }else{
+        } else {
             return '/home';
         }
+    }
 
-
+    public function authenticated(Request $request, $user)
+    {
+        if ($user->session_id){
+            Session::getHandler()->destroy($user->session_id);
+        }
+        $user->session_id = session()->getId();
+        $user->save();
+        return redirect()->intended($this->redirectPath());
     }
 
 }

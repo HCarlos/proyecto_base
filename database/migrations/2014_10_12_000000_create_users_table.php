@@ -13,7 +13,7 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('user', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('username')->unique();
             $table->string('name')->nullable();
@@ -57,6 +57,7 @@ class CreateUsersTable extends Migration
             $table->decimal('saldo_a_favor',10,2)->default(0.00)->nullable();
             $table->decimal('saldo_en_contra',10,2)->default(0.00)->nullable();
             $table->unsignedTinyInteger('familia_cliente_id')->default(1)->nullable();
+            $table->string('session_id')->nullable();
             $table->unsignedSmallInteger('status_user')->default(1)->nullable();
             $table->unsignedSmallInteger('idemp')->default(0)->nullable();
             $table->string('ip',150)->default('')->nullable();
@@ -77,6 +78,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user');
+        Schema::dropIfExists('users');
     }
 }

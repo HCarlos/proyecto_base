@@ -72,7 +72,7 @@ return [
         'role_user' => 'role_user',
         'permission_user' => 'permission_user',
         'permission_role' => 'permission_role',
-        'user' => 'user',
+        'users' => 'users',
         'permisions' => 'permisions',
 
     ],

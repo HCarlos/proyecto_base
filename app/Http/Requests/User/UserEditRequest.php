@@ -15,7 +15,7 @@ class UserEditRequest extends FormRequest
      * @return bool
      */
 
-    protected $redirectTo = 'edit';
+    protected $redirectRoute = 'edit';
 
     public function authorize()
     {

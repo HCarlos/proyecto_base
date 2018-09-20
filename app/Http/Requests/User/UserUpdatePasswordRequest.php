@@ -14,7 +14,7 @@ class UserUpdatePasswordRequest extends FormRequest
      * @return bool
      */
 
-    protected $redirectTo = "showEditProfilePassword/";
+    protected $redirectRoute = "showEditProfilePassword/";
 
     public function authorize()
     {
@@ -31,7 +31,7 @@ class UserUpdatePasswordRequest extends FormRequest
         return [
             'password_actual' => 'required|min:6|current_password',
             'password' => 'required|min:6',
-            'password_confirm' => 'required|same:password',
+            'password_confirmation' => 'required|same:password',
         ];
     }
 
@@ -39,13 +39,22 @@ class UserUpdatePasswordRequest extends FormRequest
     {
 
         return [
-            'password_actual.required' => 'Se requiere el Password Actual.',
-            'password_actual.min' => 'El Password Actual debe ser por lo menos de 6 caracteres.',
-            'password_actual.current_password' => 'El Password Actual no es correcto.',
-            'password.required' => 'Se requiere el Nuevo Password.',
-            'password.min' => 'Debe ser por lo menos de 6 caracteres.',
-            'password_confirm.required' => 'Se requiere Confirmar el Nuevo Password.',
-            'password.same' => 'La confirmación del password no coincide con el nuevo password.',
+            'password_actual.required' => 'Se requiere el :attribute.',
+            'password_actual.min' => 'El :attribute debe ser por lo menos de 6 caracteres.',
+            'password_actual.current_password' => 'El :attribute no es correcto.',
+            'password.required' => 'Se requiere el :attribute.',
+            'password.min' => ':attribute debe ser por lo menos de 6 caracteres.',
+            'password_confirmation.required' => 'Se requiere confirmar el :attribute.',
+            'password.same' => 'La confirmación del :attribute no coincide con el nuevo password.',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'password_actual' => 'Password Actual',
+            'password' => 'Password',
+            'password_confirmation' => 'Confirmar Password',
         ];
     }
 

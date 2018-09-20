@@ -30,8 +30,7 @@ class UserUpdatePasswordRequest extends FormRequest
     {
         return [
             'password_actual' => 'required|min:6|current_password',
-            'password' => 'required|min:6',
-            'password_confirmation' => 'required|same:password',
+            'password' => 'required|confirmed|min:6',
         ];
     }
 
@@ -44,8 +43,7 @@ class UserUpdatePasswordRequest extends FormRequest
             'password_actual.current_password' => 'El :attribute no es correcto.',
             'password.required' => 'Se requiere el :attribute.',
             'password.min' => ':attribute debe ser por lo menos de 6 caracteres.',
-            'password_confirmation.required' => 'Se requiere confirmar el :attribute.',
-            'password.same' => 'La confirmación del :attribute no coincide con el nuevo password.',
+            'password.confirmed' => 'La confirmación del password no coincide con el nuevo password.',
         ];
     }
 
@@ -79,7 +77,7 @@ class UserUpdatePasswordRequest extends FormRequest
             logger()->error($exception);
             return "Whoops! algo salió mal.";
         }
-        return redirect()->route('home');
+        return redirect()->route($this->redirectRoute);
 
     }
 

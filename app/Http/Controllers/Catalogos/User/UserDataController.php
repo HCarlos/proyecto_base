@@ -35,7 +35,10 @@ class UserDataController extends Controller
 
     protected function changePasswordUser(UserUpdatePasswordRequest $request){
         $request->updateUserPassword();
-        return redirect()->route('home');
+        return view('catalogos.user.user_password_edit',[
+            "user" => Auth::user(),
+            "msg"  => 'Password cambiado con éxito!',
+        ]);
     }
 
 }

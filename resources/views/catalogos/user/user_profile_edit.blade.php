@@ -14,7 +14,7 @@
             @card
                 @slot('title_card',Auth::user()->FullName)
                 @slot('body_card')
-                    @include('shared.__errors')
+                    @include('shared.code.__errors')
                     <form method="POST" action="{{ route('Edit') }}">
                         @csrf
                         {{method_field('PUT')}}

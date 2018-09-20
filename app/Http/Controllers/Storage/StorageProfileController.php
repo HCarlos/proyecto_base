@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Validator;
 class StorageProfileController extends Controller
 {
     protected $redirectTo = 'showEditProfilePhoto/';
+    protected $disk = 'profile';
     protected $F;
     public function __construct(){
         $this->middleware('auth');
@@ -41,9 +42,13 @@ class StorageProfileController extends Controller
             $file = $request->file('photo');
             $ext = $file->extension();
             $fileName = $user->id.'.' . $ext;
-            Storage::disk('profile')->put($fileName, File::get($file));
+            $fileName2 = '_'.$user->id.'.png';
+            Storage::disk($this->disk)->put($fileName, File::get($file));
+            $this->F->run( $file,$fileName2 );
+
             $user->root = 'profile/';
             $user->filename = $fileName;
+            $user->filename_png = $fileName2;
             $user->ip = $ip;
             $user->host = $host;
             $user->idemp = $idemp;
@@ -60,9 +65,10 @@ class StorageProfileController extends Controller
     public function quitarArchivoProfile(Request $request)
     {
         $user = Auth::user();
-        Storage::disk('profile')->delete($user->filename);
-        $this->F->deleteImages($user,'profile');
+        Storage::disk($this->disk)->delete($user->filename);
+        $this->F->deleteImages($user,$this->disk);
         $user->filename = '';
+        $user->filename_png = '';
         $user->root = '';
         $user->save();
 

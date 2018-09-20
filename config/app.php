@@ -171,6 +171,7 @@ return [
         Styde\Html\HtmlServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         App\Providers\ValidatorServiceProvider::class,
+
     ],
 
     /*

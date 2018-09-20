@@ -14,7 +14,7 @@
             @card
                 @slot('title_card',Auth::user()->FullName)
                 @slot('body_card')
-                    @include('shared.__errors')
+                    @include('shared.code.__errors')
                     <form method="POST" action="{{ route('subirArchivoProfile/') }}"  accept-charset="UTF-8" enctype="multipart/form-data">
                         @csrf
                         @include('shared.user.__user_photo_update')

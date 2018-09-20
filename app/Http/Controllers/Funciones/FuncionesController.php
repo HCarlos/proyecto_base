@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Funciones;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
+//use Intervention\Image\Image;
+use Intervention\Image\Facades\Image;
+use Intervention\Image\ImageManager;
+//use Intervention\Image\ImageManagerStatic as Img;
 
 class FuncionesController extends Controller
 {
@@ -19,7 +23,7 @@ class FuncionesController extends Controller
 
     public function showFile($root="/archivos/",$archivo=""){
         $public_path = public_path();
-        $url = $public_path."/archivos/".$root.$archivo;
+        $url = $public_path."/storage/".$root.$archivo;
         if (Storage::exists($archivo))
         {
             return response()->download($url);
@@ -115,5 +119,22 @@ class FuncionesController extends Controller
             }
         }
     }
+
+    public function run($imagePath,$filename="foo")
+    {
+        $image = Image::make($imagePath)
+            ->fit(300,300);
+        $image->encode('png');
+        $width = $image->getWidth();
+        $height = $image->getHeight();
+        $mask = Image::canvas($width, $height);
+        $mask->circle($width, $width/2, $height/2, function ($draw) {
+            $draw->background('#fff');
+        });
+        $image->mask($mask, false);
+        $image->save(public_path(env('PROFILE_ROOT')).'/'.$filename);
+        return $image;
+    }
+
 
 }

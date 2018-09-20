@@ -9,7 +9,7 @@
             <img src="{{ asset('images/web/empty_user_male.png')  }}" class="img-circle border border-white"/>
         @endif
     @else
-        <img src="{{ asset('storage/'.Auth::user()->root.Auth::user()->filename)  }}" class="mr-3 d-none d-sm-block rounded-circle col-md-12"/>
+        <img src="{{ asset('storage/'.Auth::user()->root.Auth::user()->filename_png)  }}" class="mr-3 d-none d-sm-block col-md-12"/>
     @endif
 @endslot
 @endcard

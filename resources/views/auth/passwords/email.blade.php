@@ -9,12 +9,7 @@
         <div class="align-items-center d-flex h-100">
             <div class="card-body">
 
-                <!-- Logo -->
-                <div class="auth-brand text-center text-lg-left">
-                    <a href="index.html">
-                        <span><img src="{{ asset('images/web/logo-0.png') }}" alt="" height="40" width="160"></span>
-                    </a>
-                </div>
+                @include('shared.code.__logo_guest')
                 <!-- title-->
                 <h4 class="mt-0">Reset Password</h4>
                 <p class="text-muted mb-4">Ingresa tu cuenta de correo electrónico y te enviaremos un email con las indicaciones para resetear tu password.</p>

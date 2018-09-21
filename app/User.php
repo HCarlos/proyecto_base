@@ -33,8 +33,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'colonia','localidad','estado','pais','cp','email1','email2',
         'cel1','cel2','tel1','tel2','lugar_nacimiento','fecha_nacimiento','genero',
         'ocupacion','lugar_trabajo',
-        'root','filename','familia_cliente_id',
-        'idemp','ip','host',
+        'root','filename','filename_png','filename_thumb',
+        'familia_cliente_id','idemp','ip','host',
         'nombre','ap_paterno','ap_materno','celular','telefono','iduser_ps',
     ];
 

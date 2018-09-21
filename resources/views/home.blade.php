@@ -18,6 +18,7 @@
         @include('partials/footer')
     </div>
 @include('partials/script_footer')
+
 </body>
 
 @endsection

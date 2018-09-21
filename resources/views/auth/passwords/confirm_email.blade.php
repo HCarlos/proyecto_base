@@ -9,12 +9,7 @@
         <div class="align-items-center d-flex h-100">
             <div class="card-body">
 
-                <!-- Logo -->
-                <div class="auth-brand text-center text-lg-left">
-                    <a href="index.html">
-                        <span><img src="{{ asset('images/web/logo-0.png') }}" alt="" height="40" width="160"></span>
-                    </a>
-                </div>
+                @include('shared.code.__logo_guest')
                 <!-- email send icon with text-->
                 <div class="text-center m-auto">
                     <h4 class="text-dark-50 text-center mt-4 font-weight-bold">Por favor checa tu email</h4>

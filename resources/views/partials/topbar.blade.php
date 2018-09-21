@@ -23,7 +23,7 @@
                             <img src="{{ asset('images/web/empty_user_male.png')  }}" width="28" height="28" class="img-circle border border-white"/>
                         @endif
                     @else
-                        <img src="{{ asset('storage/'.Auth::user()->root.Auth::user()->filename)  }}" width="40" height="40" class="mr-3 d-none d-sm-block avatar-sm rounded-circle "/>
+                        <img src="{{ asset('storage/'.Auth::user()->root.Auth::user()->filename_thumb)  }}" width="40" height="40" class="mr-3 d-none d-sm-block avatar-sm rounded-circle "/>
                     @endif
                 </span>
                 <span>

@@ -3,6 +3,7 @@
 @section('container')
 
 @home
+
     @slot('titulo_header','Cambiar mi password')
     @slot('contenido')
         <div class="col-md-4">
@@ -30,5 +31,6 @@
         </div>
     @endslot
 @endhome
-
 @endsection
+
+

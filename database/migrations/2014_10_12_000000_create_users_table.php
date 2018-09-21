@@ -47,6 +47,7 @@ class CreateUsersTable extends Migration
             $table->string('root',150)->default('')->nullable();
             $table->string('filename',50)->nullable();
             $table->string('filename_png',50)->nullable();
+            $table->string('filename_thumb',50)->nullable();
             $table->unsignedInteger('iduser_ps')->nullable();
             $table->boolean('admin')->default(false);
             $table->boolean('alumno')->default(false);

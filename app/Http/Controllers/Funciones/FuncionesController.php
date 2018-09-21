@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use Intervention\Image\ImageManager;
 //use Intervention\Image\ImageManagerStatic as Img;
+use Intervention\Image\Filters\FilterInterface;
 
 class FuncionesController extends Controller
 {
@@ -120,18 +121,20 @@ class FuncionesController extends Controller
         }
     }
 
-    public function run($imagePath,$filename="foo")
+    public function fitImage($imagePath,$filename,$W,$H,$IsRounded)
     {
         $image = Image::make($imagePath)
-            ->fit(300,300);
-        $image->encode('png');
-        $width = $image->getWidth();
-        $height = $image->getHeight();
-        $mask = Image::canvas($width, $height);
-        $mask->circle($width, $width/2, $height/2, function ($draw) {
-            $draw->background('#fff');
-        });
-        $image->mask($mask, false);
+            ->fit($W,$H);
+        if ($IsRounded){
+            $image->encode('png');
+            $width = $image->getWidth();
+            $height = $image->getHeight();
+            $mask = Image::canvas($width, $height);
+            $mask->circle($width, $width/2, $height/2, function ($draw) {
+                $draw->background('#fff');
+            });
+            $image->mask($mask, false);
+        }
         $image->save(public_path(env('PROFILE_ROOT')).'/'.$filename);
         return $image;
     }

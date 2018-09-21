@@ -8,14 +8,7 @@
         <div class="auth-fluid-form-box">
             <div class="align-items-center d-flex h-100">
                 <div class="card-body">
-
-                    <!-- Logo -->
-                    <div class="auth-brand text-center text-lg-left">
-                        <a href="/">
-                            <span><img src="{{ asset('images/web/logo-0.png') }}" alt="" height="40" width="160"></span>
-                        </a>
-                    </div>
-
+                    @include('shared.code.__logo_guest')
                     <!-- title-->
                     <h4 class="mt-0">Ingresar</h4>
                     <p class="text-muted mb-4">Escribe tus datos de acceso.</p>

@@ -10,3 +10,6 @@
 <div class="row">
     {{$contenido}}
 </div>
+
+@include('shared.code.__submit_form')
+

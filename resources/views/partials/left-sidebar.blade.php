@@ -4,16 +4,16 @@
     <div class="slimscroll-menu">
 
         <!-- LOGO -->
-        <a href="index.html" class="logo text-center">
+        <a href="/" class="logo text-center">
             <span class="logo-lg">
-                <img src="assets/images/logo.png" alt="" height="16">
+                <img src="{{asset('images/logo.png')}}" alt="" >
             </span>
             <span class="logo-sm">
-                <img src="assets/images/logo_sm.png" alt="" height="16">
+                <img src="{{asset('images/logo_sm.png')}}" >
             </span>
         </a>
-@guest()
-@else
+    @guest()
+    @else()
         <!--- Sidemenu -->
         <ul class="metismenu side-nav">
 
@@ -27,27 +27,27 @@
                 </a>
                 <ul class="side-nav-second-level" aria-expanded="false">
                     <li>
-                        <a href="layouts-horizontal.html">Horizontal</a>
+                        <a href="/">Horizontal</a>
                     </li>
                     <li>
-                        <a href="layouts-light-sidenav.html">Light Sidenav</a>
+                        <a href="/">Light Sidenav</a>
                     </li>
                     <li>
-                        <a href="layouts-collapsed.html">Collapsed Sidenav</a>
+                        <a href="/">Collapsed Sidenav</a>
                     </li>
                     <li>
                         <a href="javascript: void(0);" class="right-bar-toggle">Right Sidebar</a>
                     </li>
                 </ul>
             </li>
-
+        </ul>
 
         <!-- Help Box -->
         <div class="help-box text-white text-center">
             <a href="javascript: void(0);" class="float-right close-btn text-white">
                 <i class="mdi mdi-close"></i>
             </a>
-            <img src="assets/images/help-icon.svg" height="90" alt="Helper Icon Image" />
+            <img src="{{asset('images/help-icon.svg')}}" height="90" alt="Helper Icon Image" />
             {{--<h5 class="mt-3">Unlimited Access</h5>--}}
             {{--<p class="mb-3">Upgrade to plan to get access to unlimited reports</p>--}}
             {{--<a href="javascript: void(0);" class="btn btn-outline-light btn-sm">Upgrade</a>--}}
@@ -59,6 +59,5 @@
     @endguest
     </div>
     <!-- Sidebar -left -->
-
 </div>
 <!-- Left Sidebar End -->

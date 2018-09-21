@@ -10,6 +10,9 @@
         @endif
     @else
         <img src="{{ asset('storage/'.Auth::user()->root.Auth::user()->filename_png)  }}" class="mr-3 d-none d-sm-block col-md-12"/>
+        <a href="{{ route('quitarArchivoProfile/')  }}" class="btn btn-icon btn-light red mi-imagen-bajo-derecha" >
+            <i class="mdi mdi-delete-empty mdi-18px"></i>
+        </a>
     @endif
 @endslot
 @endcard

@@ -43,12 +43,15 @@ class StorageProfileController extends Controller
             $ext = $file->extension();
             $fileName = $user->id.'.' . $ext;
             $fileName2 = '_'.$user->id.'.png';
+            $thumbnail = '_thumb_'.$user->id.'.png';
             Storage::disk($this->disk)->put($fileName, File::get($file));
-            $this->F->run( $file,$fileName2 );
+            $this->F->fitImage( $file,$fileName2,250,250,true );
+            $this->F->fitImage( $file,$thumbnail,64,64,true );
 
             $user->root = 'profile/';
             $user->filename = $fileName;
             $user->filename_png = $fileName2;
+            $user->filename_thumb = $thumbnail;
             $user->ip = $ip;
             $user->host = $host;
             $user->idemp = $idemp;
@@ -62,13 +65,16 @@ class StorageProfileController extends Controller
 
     }
 
-    public function quitarArchivoProfile(Request $request)
+    public function quitarArchivoProfile()
     {
         $user = Auth::user();
         Storage::disk($this->disk)->delete($user->filename);
-        $this->F->deleteImages($user,$this->disk);
+        Storage::disk($this->disk)->delete($user->filename_png);
+        Storage::disk($this->disk)->delete($user->filename_thumb);
+
         $user->filename = '';
         $user->filename_png = '';
+        $user->filename_thumb = '';
         $user->root = '';
         $user->save();
 

@@ -73,7 +73,7 @@ class RegisterController extends Controller
             'username' => strtolower($data['username']),
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'idemp' => $idemp,
+            'empresa_id' => $idemp,
             'ip' => $ip,
             'host' => $host,
         ]);

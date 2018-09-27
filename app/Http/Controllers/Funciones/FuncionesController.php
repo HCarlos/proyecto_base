@@ -99,19 +99,30 @@ class FuncionesController extends Controller
         return !$type ? $f.' 00:00:00' : $f.' 23:59:59';
     }
 
-    public function validImage($model, $storage, $root){
-        $ext = ['jpg','jpeg','gif','png'];
-        for ($i=0;$i<4;$i++){
+    public function validImage($model, $storage, $root, $type=1){
+        $ext = config('platsource.images_type_extension');
+        for ($i=0;$i<count($ext);$i++){
             $p1 = $model->id.'.'.$ext[$i];
+            $p2 = '_'.$model->id.'.png';
+            $p3 = '_thumb_'.$model->id.'.png';
             $e1 = Storage::disk($storage)->exists($p1);
             if ($e1) {
-                $model->update(['root'=>$root,'filename'=>$p1]);
+                switch ($type) {
+                    case 1:
+                        $model->update([
+                            'root'              =>  $root,
+                            'filename'          =>  $p1,
+                            'filename_png'      =>  $p2,
+                            'filename_thumb'    =>  $p3
+                        ]);
+                        break;
+                }
             }
         }
     }
 
     public function deleteImages($model,$storage){
-        $ext = ['jpg','jpeg','gif','png','xls','xlsx','doc','docx','ppt','pptx','txt','mp4'];
+        $ext = ['jpg','jpeg','gif','png','JPG','JPEG','GIF','PNG','xls','xlsx','doc','docx','ppt','pptx','txt','mp4','pages','key','numbers'];
         for ($i=0;$i<4;$i++){
             $p1 = $model->id.'.'.$ext[$i];
             $e1 = Storage::disk($storage)->exists($p1);

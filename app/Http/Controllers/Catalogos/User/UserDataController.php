@@ -11,7 +11,7 @@ class UserDataController extends Controller
 {
     protected function showEditUserData(){
         $user = Auth::user();
-        return view('catalogos.user.user_profile_edit',
+        return view('catalogos.user.user_profile_solo_lectura',
             [
             'items'=>$user,
             ]

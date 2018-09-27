@@ -15,14 +15,8 @@
                 @slot('title_card',Auth::user()->FullName)
                 @slot('body_card')
                     @include('shared.code.__errors')
-                    <form method="POST" action="{{ route('Edit') }}">
-                        @csrf
-                        {{method_field('PUT')}}
-                        @include('shared.user.__user_edit')
-
-                        <div class="form-group mt-4">
-                            <button type="submit" class="btn btn-primary float-right">Guardar</button>
-                        </div>
+                    <form method="POST" action="#">
+                        @include('shared.user.__user_solo_lectura')
                     </form>
                 @endslot
             @endcard

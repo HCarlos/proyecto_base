@@ -409,3 +409,18 @@ fieldset[disabled] .btn-cafe.active {
 .form-error {
 	border: 1px solid #e74c3c !important;
 }
+
+.margin-left-1em{
+	margin-left: 1em !important;
+}
+
+.margin-left-2em{
+	margin-left: 2em !important;
+}
+.margin-right-1em{
+	margin-right: 1em !important;
+}
+
+.margin-right-2em{
+	margin-right: 2em !important;
+}

@@ -4,6 +4,7 @@ namespace App;
 
 use App\Http\Controllers\Funciones\FuncionesController;
 use Carbon\Carbon;
+use DateTime;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -27,15 +28,15 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $fillable = [
         'id',
         'username', 'email', 'password',
+        'nombre','ap_paterno','ap_materno',
         'admin','alumno','foraneo','exalumno','credito',
         'dias_credito','limite_credito','saldo_a_favor','saldo_en_contra',
         'rfc','curp','razon_social','calle','num_ext','num_int',
-        'colonia','localidad','estado','pais','cp','email1','email2',
-        'cel1','cel2','tel1','tel2','lugar_nacimiento','fecha_nacimiento','genero',
-        'ocupacion','lugar_trabajo',
+        'colonia','localidad','estado','pais','cp','emails','celulares','telefonos',
+        'lugar_nacimiento','fecha_nacimiento','genero', 'ocupacion','lugar_trabajo',
         'root','filename','filename_png','filename_thumb',
-        'familia_cliente_id','idemp','ip','host',
-        'nombre','ap_paterno','ap_materno','celular','telefono','iduser_ps',
+        'empresa_id','iduser_ps','status_user','ip','host',
+
     ];
 
     protected $hidden = ['password', 'remember_token',];
@@ -110,16 +111,14 @@ class User extends Authenticatable implements MustVerifyEmail
 //            });
     }
 
-    public static function findOrCreateUserWithRole3(
+    public static function findOrCreateUserWithRole(
         string $username, string $nombre, string $ap_paterno, string $ap_materno, string $email, string $password,
-        bool $admin, bool $alumno, bool $foraneo, bool $exalumno, bool $credito, int $dias_credito, float $limite_credito,
-        string $domicilio, string $celular, string $telefono,
-        float $saldo_a_favor, float $saldo_en_contra, int $familia_cliente_id,
-        int $iduser_ps, int $idemp, Role $role1, Role $role2, Role $role3,
-        string $calle='', string $num_ext='', string $num_int='', string $colonia='', string $localidad='', string $estado='', string $pais='', string $cp='', string $curp='', string $rfc='', string $razon_social='',
-        string $lugar_nacimiento='', Date $fecha_nacimiento=null, int $genero=null,
-        string $ocupacion=''){
-        $user = static::all()->where('username', $username)->where('email', $email)->first();
+        string $calle='', string $num_ext='', string $num_int='', string $colonia='', string $localidad='',
+        string $estado='TABASCO', string $pais='MÉXICO', string $cp='', string $curp='', string $rfc='',
+        string $razon_social='', string $lugar_nacimiento='', string $fecha_nacimiento, int $genero=0, string $emails, string $celulares, string $telefonos, int $iduser_ps, int $empresa_id, string $ocupacion='', string $roles
+        ){
+        $result = false;
+        $user = static::where('username', $username)->where('email', $email)->first();
         if (!$user) {
             if ($email == ''){
                 $email = $username.'@example.com';
@@ -127,6 +126,8 @@ class User extends Authenticatable implements MustVerifyEmail
             if ($password == ''){
                 $password = $username;
             }
+
+            $fecha_nacimiento =  DateTime::createFromFormat('d/m/Y', $fecha_nacimiento)->format('Y-m-d');
 
             $user = static::create([
                 'username'=>$username,
@@ -150,29 +151,24 @@ class User extends Authenticatable implements MustVerifyEmail
                 'fecha_nacimiento' => $fecha_nacimiento,
                 'genero' => $genero,
                 'ocupacion'=> $ocupacion,
-                'celular' => $celular,
-                'telefono' => $telefono,
-                'admin' => $admin,
-                'alumno' => $alumno,
-                'foraneo' => $foraneo,
-                'exalumno' => $exalumno,
-                'credito' => $credito,
-                'dias_credito' => $dias_credito,
-                'limite_credito' => $limite_credito,
-                'saldo_a_favor' => $saldo_a_favor,
-                'saldo_en_contra' => $saldo_en_contra,
+                'emails' => $emails,
+                'celulares' => $celulares,
+                'telefonos' => $telefonos,
                 'iduser_ps' => $iduser_ps,
-                'familia_cliente_id' => $familia_cliente_id,
-                'idemp' => $idemp,
+                'empresa_id' => $empresa_id,
             ]);
-            $user->roles()->attach($role1);
-            $user->roles()->attach($role2);
-            $user->roles()->attach($role3);
+            $roless = explode('|',$roles);
+            foreach ($roless as $role){
+                $user->roles()->attach($role);
+            }
+            $user->permissions()->attach(7);
+            $result = $user ?? true;
+
             $F = new FuncionesController();
             $F->validImage($user,'profile','profile/');
 
         }
-        return $user;
+        return $result;
 
     }
 

@@ -72,29 +72,17 @@
 </div>
 
 <div class="form-group row mb-3">
-    <label for = "email1" class="col-md-3 col-form-label">Email Alt 1</label>
+    <label for = "emails" class="col-md-3 col-form-label">Emails</label>
     <div class="col-md-9">
-        <input type="email" name="email1" id="email1" value="{{ old('email1',$items->email1) }}" class="form-control" />
+        <input type="text" name="emails" id="emails" value="{{ old('emails',$items->emails) }}" class="form-control" />
     </div>
-    <label for = "email2" class="col-md-3 col-form-label">Email Alt 2</label>
+    <label for = "celulares" class="col-md-3 col-form-label">Celulares</label>
     <div class="col-md-9">
-        <input type="email" name="email2" id="email2" value="{{ old('email2',$items->email2) }}" class="form-control" />
+        <input type="text" name="celulares" id="celulares" value="{{ old('celulares',$items->celulares) }}" class="form-control" />
     </div>
-    <label for = "cel1" class="col-md-3 col-form-label">Celular Alt 1</label>
+    <label for = "telefonos" class="col-md-3 col-form-label">Teléfonos</label>
     <div class="col-md-9">
-        <input type="text" name="cel1" id="cel1" value="{{ old('cel1',$items->cel1) }}" class="form-control" />
-    </div>
-    <label for = "cel2" class="col-md-3 col-form-label">Celular Alt 2</label>
-    <div class="col-md-9">
-        <input type="text" name="cel2" id="cel2" value="{{ old('cel2',$items->cel2) }}" class="form-control" />
-    </div>
-    <label for = "tel1" class="col-md-3 col-form-label">Teléfono Alt 1</label>
-    <div class="col-md-9">
-        <input type="text" name="tel1" id="tel1" value="{{ old('tel1',$items->tel1) }}" class="form-control" />
-    </div>
-    <label for = "tel2" class="col-md-3 col-form-label">Teléfono Alt 2</label>
-    <div class="col-md-9">
-        <input type="text" name="tel2" id="tel2" value="{{ old('tel2',$items->tel2) }}" class="form-control" />
+        <input type="text" name="telefonos" id="telefonos" value="{{ old('telefonos',$items->telefonos) }}" class="form-control" />
     </div>
 </div>
 
@@ -128,7 +116,7 @@
     <label for = "celular" class="col-md-3 col-form-label">Roles</label>
     <div class="col-md-9">
         @foreach($items->roles as $role)
-            <span class="badge badge-light float-right">{{ $role->name }}</span>
+            <span class="badge badge-light float-md-right margin-left-1em">{{ $role->name }}</span>
         @endforeach
     </div>
 </div>
@@ -137,7 +125,7 @@
     <label for = "celular" class="col-md-3 col-form-label">Permisos</label>
     <div class="col-md-9">
         @foreach($items->permissions as $permission)
-            <span class="badge badge-light float-right">{{ $permission->name }}</span>
+            <span class="badge badge-light float-right margin-left-1em">{{ $permission->name }}</span>
         @endforeach
     </div>
 </div>

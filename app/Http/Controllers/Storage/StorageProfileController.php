@@ -31,7 +31,7 @@ class StorageProfileController extends Controller
 
         try {
             $validator = Validator::make($data, [
-                'photo' => "required|mimes:jpg,jpeg,gif,png,JPG,JPEG,GIF,PNG|max:10000",
+                'photo' => "required|mimes:".config('platsource.images_type_validate')."|max:10000",
             ]);
             if ($validator->fails()){
                 return redirect('showEditProfilePhoto/')
@@ -54,7 +54,7 @@ class StorageProfileController extends Controller
             $user->filename_thumb = $thumbnail;
             $user->ip = $ip;
             $user->host = $host;
-            $user->idemp = $idemp;
+            $user->empresa_id = $idemp;
             $user->save();
             return redirect($this->redirectTo);
 

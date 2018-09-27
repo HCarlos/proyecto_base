@@ -16,7 +16,6 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('username')->unique();
-            $table->string('name')->nullable();
             $table->string('email')->unique();
             $table->string('password');
             $table->string('nombre')->nullable();
@@ -33,12 +32,9 @@ class CreateUsersTable extends Migration
             $table->string('estado',25)->default('TABASCO')->nullable();
             $table->string('pais',25)->default('MÉXICO')->nullable();
             $table->string('cp',10)->default('')->nullable();
-            $table->string('email1',100)->default('')->nullable();
-            $table->string('email2',100)->default('')->nullable();
-            $table->string('cel1',100)->default('')->nullable();
-            $table->string('cel2',100)->default('')->nullable();
-            $table->string('tel1',100)->default('')->nullable();
-            $table->string('tel2',100)->default('')->nullable();
+            $table->string('emails',500)->default('')->nullable();
+            $table->string('celulares',250)->default('')->nullable();
+            $table->string('telefonos',250)->default('')->nullable();
             $table->string('lugar_nacimiento',250)->default('')->nullable();
             $table->date('fecha_nacimiento')->nullable();
             $table->smallInteger('genero')->default(0)->nullable();
@@ -58,14 +54,12 @@ class CreateUsersTable extends Migration
             $table->decimal('limite_credito',10,2)->default(0.00)->nullable();
             $table->decimal('saldo_a_favor',10,2)->default(0.00)->nullable();
             $table->decimal('saldo_en_contra',10,2)->default(0.00)->nullable();
-            $table->unsignedTinyInteger('familia_cliente_id')->default(1)->nullable();
             $table->string('session_id')->nullable();
             $table->unsignedSmallInteger('status_user')->default(1)->nullable();
-            $table->unsignedSmallInteger('idemp')->default(0)->nullable();
+            $table->unsignedSmallInteger('empresa_id')->default(0)->nullable();
             $table->string('ip',150)->default('')->nullable();
             $table->string('host',150)->default('')->nullable();
-            $table->index('familia_cliente_id');
-            $table->index('idemp');
+            $table->index('empresa_id');
             $table->timestamp('email_verified_at')->nullable();
             $table->softDeletes();
             $table->rememberToken();
@@ -81,5 +75,6 @@ class CreateUsersTable extends Migration
     public function down()
     {
         Schema::dropIfExists('users');
+        Schema::dropIfExists('user');
     }
 }

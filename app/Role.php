@@ -25,4 +25,19 @@ class Role extends Model
         return $this->belongsToMany(User::class);
     }
 
+    public static function findOrCreateRoleMasive(string $name, string $descripcion, $permission_id=7){
+        $role = static::all()->where('name', $name)->first();
+        if (!$role) {
+            $role = static::create([
+                'name'=>$name,
+                'description'=>$descripcion,
+                'guard_name'=>'web',
+            ]);
+            $role->givePermissionTo($permission_id);
+        }
+        return $role;
+
+    }
+
+
 }

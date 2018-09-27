@@ -17,6 +17,7 @@ class AppServiceProvider extends ServiceProvider
         //
         Blade::component('componentes._home','home');
         Blade::component('componentes._card','card');
+        Blade::component('componentes._catalogo','catalogo');
     }
 
     /**

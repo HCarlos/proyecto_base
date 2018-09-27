@@ -21,9 +21,11 @@
                         @csrf
                         {{method_field('PUT')}}
                         @include('shared.user.__user_password_edit')
-
-                        <div class="form-group mt-4">
-                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        <div class="form-group row mb-3">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-8">
+                                <button type="submit" class="btn btn-primary">Guardar</button>
+                            </div>
                         </div>
                     </form>
                 @endslot

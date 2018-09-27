@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Traits\HasPermissions;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -25,7 +24,7 @@ class Role extends Model
         return $this->belongsToMany(User::class);
     }
 
-    public static function findOrCreateRoleMasive(string $name, string $descripcion, $permission_id=7){
+    public static function findOrCreateRoleMasive(string $name, string $descripcion, Permission $permission_id){
         $role = static::all()->where('name', $name)->first();
         if (!$role) {
             $role = static::create([
@@ -33,7 +32,7 @@ class Role extends Model
                 'description'=>$descripcion,
                 'guard_name'=>'web',
             ]);
-            $role->givePermissionTo($permission_id);
+            $role->permissions()->attach($permission_id);
         }
         return $role;
 

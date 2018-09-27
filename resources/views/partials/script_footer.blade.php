@@ -9,3 +9,6 @@
 
 @yield("script_extra")
 
+<script>
+
+</script>

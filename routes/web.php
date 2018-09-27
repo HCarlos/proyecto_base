@@ -53,6 +53,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('subirFotoProfile/', 'Storage\StorageProfileController@subirArchivoProfile')->name('subirArchivoProfile/');
     Route::get('quitarFotoProfile/', 'Storage\StorageProfileController@quitarArchivoProfile')->name('quitarArchivoProfile/');
 
+
+    // USUARIOS
+    Route::get('list-users/', 'Catalogos\User\UserDataController@showListUser')->name('listUsers');
+
 });
 
 Route::get('enviar', ['as' => 'enviar', function () {

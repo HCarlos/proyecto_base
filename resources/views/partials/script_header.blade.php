@@ -14,6 +14,7 @@
 <!-- App css -->
 <link href="{{ asset('css/icons.min.css')}}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('css/app.min.css')}}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('css/dataTables.bootstrap4.css') }}" rel="stylesheet">
 <link href="{{ asset('css/platsource.css') }}" rel="stylesheet">
 
 @yield('styles')

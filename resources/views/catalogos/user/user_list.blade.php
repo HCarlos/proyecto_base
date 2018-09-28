@@ -2,17 +2,15 @@
 
 @section('container')
 
-@home
-    @slot('titulo_header','Catálogo de Usuarios')
-    @slot('contenido')
+@catalogo
+    @slot('buttons')
+        @include('shared.ui_kit.__menu_catalogo')
+    @endslot
+    @slot('body_catalogo')
         <div class="col-md-12">
-            @catalogo
-                @slot('body_catalogo')
-                        @include('shared.user.__user_list')
-                @endslot
-            @endcatalogo
+            @include('shared.user.__user_list')
         </div>
     @endslot
-@endhome
+@endcatalogo
 
 @endsection

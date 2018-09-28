@@ -10,7 +10,7 @@
 
 <div class="navbar-custom">
 
-        <ul class="list-unstyled topbar-right-menu float-right mb-0">
+    <ul class="list-unstyled topbar-right-menu float-right mb-0">
 
         <li class="dropdown notification-list">
             <a class="nav-link dropdown-toggle nav-user arrow-none mr-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="false"
@@ -63,7 +63,7 @@
 
                 <a class="dropdown-item" href="{{ route('logout') }}"
                    onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
+                             document.getElementById('logout-form').submit();">
                     {{ __('Logout') }}
                 </a>
 
@@ -75,9 +75,15 @@
         </li>
 
     </ul>
-    @endguest
-    <button class="button-menu-mobile open-left disable-btn">
-        <i class="mdi mdi-menu"></i>
-    </button>
+    {{--<button class="button-menu-mobile open-left disable-btn">--}}
+        {{--<i class="mdi mdi-menu"></i> hola mundo--}}
+    {{--</button>--}}
+    <div class="app-search">
+        <div class="input-group">
+        <div style="text-align: center;  vertical-align: center; font-size: 19px; font-weight: bold; padding-top: 0.5em;">{{isset($titulo_catalogo)?$titulo_catalogo:''}}</div>
+        </div>
+    </div>
 </div>
+@endguest
+
 <!-- end Topbar -->

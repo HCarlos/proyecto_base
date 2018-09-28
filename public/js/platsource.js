@@ -1,1 +1,149 @@
-!function(e){var n={};function t(i){if(n[i])return n[i].exports;var o=n[i]={i:i,l:!1,exports:{}};return e[i].call(o.exports,o,o.exports,t),o.l=!0,o.exports}t.m=e,t.c=n,t.d=function(e,n,i){t.o(e,n)||Object.defineProperty(e,n,{configurable:!1,enumerable:!0,get:i})},t.n=function(e){var n=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(n,"a",n),n},t.o=function(e,n){return Object.prototype.hasOwnProperty.call(e,n)},t.p="/",t(t.s=46)}({46:function(e,n,t){e.exports=t(47)},47:function(e,n){$(document).ready(function(){var e=["/asign_role_user/","/asign_permission_role/"],n=["/unasign_role_user/","/unasign_permission_role/"];$("#preloaderGlobal").hide(),$(".btnAction2")&&$(".btnAction2").on("click",function(e){e.preventDefault();var n=e.currentTarget.id.split("-");if(!confirm("Desea eliminar el registro: "+n[1]))return!1;var t="/"+n[2]+"_"+n[0]+"/"+n[1];$(function(){$.ajax({method:"GET",url:t}).done(function(e){"OK"==e.data?window.location.reload():alert(e.mensaje)})})}),$(".listTarget")&&$(".listTarget").on("change",function(e){e.preventDefault();var n=this.id.split("-")[1],t=$(this).val();window.location.href="/list_left_config/"+n+"/"+t+"/"}),$(".btnAsign0")&&$(".btnAsign0").on("click",function(n){n.preventDefault();var t=this.id.split("-"),i=t[1],o=(t[2],$(".listEle option:selected").val()),r=$('select[name="listTarget"] option:selected').val();if(isUndefined(o))return alert("Seleccione una opción disponible"),!1;if(o="",$(".listEle option:selected").each(function(){o+=$(this).val()+"|"}),isUndefined(r)||r<=0)return alert("Seleccione un elemento"),!1;var l=e[i]+r+"/"+o+"/"+i;$(function(){$.ajax({method:"GET",url:l}).done(function(e){window.location.href="/list_left_config/"+i+"/"+r})})}),$(".btnUnasign0")&&$(".btnUnasign0").on("click",function(e){e.preventDefault();var t=this.id.split("-")[1],i=$(".lstAsigns option:selected").val(),o=$('select[name="listTarget"] option:selected').val();if(isUndefined(i))return alert("Seleccione una opción disponible"),!1;if(i="",$(".lstAsigns option:selected").each(function(){i+=$(this).val()+"|"}),isUndefined(o)||o<=0)return alert("Seleccione un elemento"),!1;var r=n[t]+o+"/"+i+"/"+t;$(function(){$.ajax({method:"GET",url:r}).done(function(e){window.location.href="/list_left_config/"+t+"/"+o})})}),$("#btnRefreshNavigator")&&$("#btnRefreshNavigator").on("click",function(e){e.preventDefault(),window.location.reload()}),$("#descripcion_pedido")&&($("#descripcion_pedido").val($("#paquete_id").find(":selected").text()),$("#paquete_id").on("change",function(e){$("#descripcion_pedido").val($("#paquete_id").find(":selected").text())}))})}});
+
+$(document).ready(function() {
+
+    var pathAssign   = ['/asign_role_user/','/asign_permission_role/'];
+    var pathUnAssign = ['/unasign_role_user/','/unasign_permission_role/'];
+
+    var nCols = $('#tblCat').find("tbody > tr:first td").length;
+    var aCol = [];
+
+    for (i = 0; i < nCols - 1; i++) {aCol[i] = {};}
+    aCol[nCols - 1] = {"sorting": false};
+
+    var table = $('#tblCat').DataTable({
+        searching: false,
+        paging: false,
+        info: true,
+        "language": {
+            "info": "Mostrando página _PAGE_ de _PAGES_"
+        },
+        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
+        "aoColumns": aCol
+    });
+
+
+    if ( $(".btnAction2") ){
+        $('.btnAction2').on('click', function(event) {
+            event.preventDefault();
+            var aID = event.currentTarget.id.split('-');
+            var x = confirm("Desea eliminar el registro: "+aID[1]);
+
+            if (!x){
+                return false;
+            }
+
+            var Url = '/'+aID[2]+'_'+aID[0]+'/'+aID[1];
+
+            $(function() {
+                $.ajax({
+                    method: "GET",
+                    url: Url
+                })
+                    .done(function( response ) {
+                        if (response.data == 'OK'){
+                            window.location.reload();
+                        }else{
+                            alert(response.mensaje);
+                        }
+                    })
+            });
+        });
+    }
+
+    if ( $(".listTarget") ){
+        $(".listTarget").on('change', function(event) {
+            event.preventDefault();
+            var IdArr  = this.id.split('-');
+            var Ida    = IdArr[1];
+            var IdUser = $(this).val();
+            window.location.href = '/list_left_config/'+Ida+'/'+IdUser+'/';
+        });
+    }
+
+    if ( $(".btnAsign0") ){
+        $(".btnAsign0").on('click', function(event) {
+            event.preventDefault();
+            var IdArr  = this.id.split('-');
+            var Cat_Id = IdArr[1];
+            var IdUser = IdArr[2];
+            var x = $('.listEle option:selected').val();
+            var y = $('select[name="listTarget"] option:selected').val();
+            if (isUndefined(x)){
+                alert("Seleccione una opción disponible");
+                return false;
+            }else{
+                x='';
+                $(".listEle option:selected").each(function () {
+                    x += $(this).val() + "|";
+                });
+
+            }
+            if (isUndefined(y) || y <= 0){
+                alert("Seleccione un elemento");
+                return false;
+            }
+            var Url = pathAssign[Cat_Id]+y+'/'+x+'/'+Cat_Id;
+
+
+            $(function() {
+                $.ajax({
+                    method: "GET",
+                    url: Url
+                })
+                    .done(function( response ) {
+                        window.location.href = '/list_left_config/'+Cat_Id+'/'+y;
+                    });
+            });
+
+        });
+    }
+
+    if ( $(".btnUnasign0") ){
+        $(".btnUnasign0").on('click', function(event) {
+            event.preventDefault();
+            var IdArr  = this.id.split('-');
+            var Cat_Id = IdArr[1];
+            var z = $('.lstAsigns option:selected').val();
+            var y = $('select[name="listTarget"] option:selected').val();
+            if (isUndefined(z)){
+                alert("Seleccione una opción disponible");
+                return false;
+            }else{
+                z='';
+                $(".lstAsigns option:selected").each(function () {
+                    z += $(this).val() + "|";
+                });
+            }
+            if (isUndefined(y) || y <= 0){
+                alert("Seleccione un elemento");
+                return false;
+            }
+            var Url = pathUnAssign[Cat_Id]+y+'/'+z+'/'+Cat_Id;
+            $(function() {
+                $.ajax({
+                    method: "GET",
+                    url: Url
+                })
+                    .done(function( response ) {
+                        window.location.href = '/list_left_config/'+Cat_Id+'/'+y;
+                    });
+            });
+
+        });
+    }
+
+    if ( $("#btnRefreshNavigator") ){
+        $("#btnRefreshNavigator").on('click', function(event) {
+            event.preventDefault();
+            window.location.reload();
+        });
+    }
+
+    if ( $('#descripcion_pedido') ) {
+        $('#descripcion_pedido').val( $('#paquete_id').find(':selected').text() );
+        $('#paquete_id').on('change',function(event){
+            $('#descripcion_pedido').val( $('#paquete_id').find(':selected').text() );
+        });
+    }
+
+});

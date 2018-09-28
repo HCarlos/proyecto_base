@@ -21,7 +21,7 @@ class UserDataController extends Controller
             ->paginate();
 
         $items->appends(request(['search']))->fragment('table');
-        $items->links();
+        //$items->links();
 
         $user = Auth::User();
 
@@ -40,6 +40,7 @@ class UserDataController extends Controller
         return view('catalogos.user.user_profile_solo_lectura',
             [
             'items'=>$user,
+            'titulo_catalogo' => "Mi Perfil ",
             ]
         );
     }
@@ -51,19 +52,23 @@ class UserDataController extends Controller
 
     protected function showEditProfilePhoto(){
         $user = Auth::user();
-        return view('catalogos.user.user_photo_update',compact("user"));
+        $titulo_catalogo = "Mi Photo ";
+        return view('catalogos.user.user_photo_update',compact("user","titulo_catalogo"));
     }
 
     protected function showEditProfilePassword(){
         $user = Auth::user();
-        return view('catalogos.user.user_password_edit',compact("user"));
+        $titulo_catalogo = "Mi Password ";
+        return view('catalogos.user.user_password_edit',compact("user", "titulo_catalogo"));
     }
 
     protected function changePasswordUser(UserUpdatePasswordRequest $request){
         $request->updateUserPassword();
+        $titulo_catalogo = "Mi Password ";
         return view('catalogos.user.user_password_edit',[
             "user" => Auth::user(),
             "msg"  => 'Password cambiado con éxito!',
+            "titulo_catalogo" => $titulo_catalogo,
         ]);
     }
 

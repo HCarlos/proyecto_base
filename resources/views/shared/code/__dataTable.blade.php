@@ -6,15 +6,15 @@
             $(document).ready(function() {
 
                 $("#preloaderLocal").hide();
-                $('#{{ $tableName}}').removeClass('hide');
+                $('#tblCat').removeClass('hide');
 
-                var nCols = $('#{{ $tableName}}').find("tbody > tr:first td").length;
+                var nCols = $('#tblCat').find("tbody > tr:first td").length;
                 var aCol = [];
 
                 for (i = 0; i < nCols - 1; i++) {aCol[i] = {};}
                 aCol[nCols - 1] = {"sorting": false};
 
-                oTable = $('#{{ $tableName}}').dataTable({
+                oTable = $('#tblCat').DataTable({
                     "oLanguage": {
                         "sLengthMenu": "_MENU_ registros por página",
                         "oPaginate": {

@@ -3,7 +3,7 @@
 @section('container')
 
 @home
-    @slot('titulo_header','Mi perfil')
+    @slot('titulo_header','Ver mi perfil')
     @slot('contenido')
         <div class="col-md-4">
             @include('shared.user.__user_photo_header')

@@ -14,6 +14,8 @@ $(document).ready(function() {
         searching: false,
         paging: false,
         info: true,
+        "pageLength": 50,
+        "order": [[ 0, "desc" ]],
         "language": {
             "info": "Mostrando página _PAGE_ de _PAGES_"
         },
@@ -22,8 +24,8 @@ $(document).ready(function() {
     });
 
 
-    if ( $(".btnAction2") ){
-        $('.btnAction2').on('click', function(event) {
+    if ( $(".removeItemList") ){
+        $('.removeItemList').on('click', function(event) {
             event.preventDefault();
             var aID = event.currentTarget.id.split('-');
             var x = confirm("Desea eliminar el registro: "+aID[1]);
@@ -32,7 +34,7 @@ $(document).ready(function() {
                 return false;
             }
 
-            var Url = '/'+aID[2]+'_'+aID[0]+'/'+aID[1];
+            var Url = '/'+aID[0]+'/'+aID[1];
 
             $(function() {
                 $.ajax({
@@ -41,6 +43,7 @@ $(document).ready(function() {
                 })
                     .done(function( response ) {
                         if (response.data == 'OK'){
+                            alert(response.mensaje);
                             window.location.reload();
                         }else{
                             alert(response.mensaje);

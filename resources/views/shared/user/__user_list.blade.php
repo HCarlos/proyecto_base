@@ -19,7 +19,7 @@
                     <tr>
                         <td class="table-user">{{$item->id}}</td>
                         <td>{{$item->username}}</td>
-                        <td>{{$item->Fullname}}</td>
+                        <td>{{utf8_decode($item->Fullname)}}</td>
                        <td class="action-icon text-center">@if($item->genero==0)
                                <i class="fas fa-female text-danger"></i>
                            @else
@@ -32,8 +32,10 @@
                             @endforeach
                         </td>
                         <td class="table-action">
-                            @include('shared.ui_kit.__edit_item')
-                            @include('shared.ui_kit.__remove_item')
+                            <div class="button-list">
+                                @include('shared.ui_kit.__edit_item')
+                                @include('shared.ui_kit.__remove_item')
+                            </div>
                         </td>
                     </tr>
                 @endforeach

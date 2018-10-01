@@ -40,7 +40,7 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = ['admin'=>'boolean','alumno'=>'boolean','foraneo'=>'boolean','exalumno'=>'boolean','credito'=>'boolean',];
 
     public static function findByEmail($email){
-        return static::where( compac('email') )->first();
+        return static::where( 'email' , $email )->first();
     }
 
     public function permissions() {
@@ -110,7 +110,8 @@ class User extends Authenticatable implements MustVerifyEmail
         }
         $search = strtoupper($search);
         $query->whereRaw("CONCAT(ap_paterno,' ',ap_materno,' ',nombre) like ?", "%{$search}%")
-            ->orWhere('email', 'like', "%{$search}%");
+            ->orWhereRaw("UPPER(username) like ?", "%{$search}%")
+            ->orWhere('id', 'like', "%{$search}%");
 //            ->orWhereHas('team', function ($query) use ($search) {
 //                $query->where('name', 'like', "%{$search}%");
 //            });

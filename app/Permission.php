@@ -18,6 +18,10 @@ class Permission extends Model
     protected $guard_name = 'web'; // or whatever guard you want to use
     protected $table = 'permissions';
 
+    public static function findByName($name){
+        return static::where( 'name',$name )->first();
+    }
+
     public function roles() {
         return $this->belongsToMany(Role::class);
     }

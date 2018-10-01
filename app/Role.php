@@ -16,6 +16,10 @@ class Role extends Model
     protected $table = 'roles';
     protected $fillable = ['name',];
 
+    public static function findByName($name){
+        return static::where( 'name',$name )->first();
+    }
+
     public function permissions() {
         return $this->belongsToMany(Permission::class);
     }

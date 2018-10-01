@@ -47,6 +47,12 @@ Route::group(['middleware' => 'auth'], function () {
 //    Route::get('showEditProfileEmail/', 'Auth\EditUserDataController@showEditProfileEmail')->name('showEditProfileEmail/');
 //    Route::put('changeEmailUser/', 'Auth\EditUserDataController@changeEmailUser')->name('changeEmailUser/');
 
+    Route::get('editUser/{Id}', 'Catalogos\User\UserDataController@showEditUser')->name('editUser');
+    Route::put('EditUser', 'Catalogos\User\UserDataController@updateUser')->name('EditUser');
+    Route::get('newUser', 'Catalogos\User\UserDataController@newUser')->name('newUser');
+    Route::post('createUser', 'Catalogos\User\UserDataController@createUser')->name('createUser');
+    Route::get('removeUser/{id}', 'Catalogos\User\UserDataController@removeUser')->name('removeUser');
+
     Route::get('showEditProfilePassword/', 'Catalogos\User\UserDataController@showEditProfilePassword')->name('showEditProfilePassword/');
     Route::put('changePasswordUser/', 'Catalogos\User\UserDataController@changePasswordUser')->name('changePasswordUser/');
 

@@ -48,6 +48,13 @@ class RolesAndPermissionsSeeder extends Seeder
         ]);
         $role_sysop->permissions()->attach($P11);
 
+        $role_invitado = Role::create([
+            'name' => 'Invitado',
+            'description' => 'Invitado',
+            'guard_name' => 'web',
+        ]);
+        $role_invitado->permissions()->attach($P7);
+
         $user = new User();
         $user->nombre = 'Administrador';
         $user->username = 'Admin';

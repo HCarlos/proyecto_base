@@ -4,6 +4,7 @@ namespace App;
 
 use App\Http\Controllers\Funciones\FuncionesController;
 use App\Models\User\UserAdress;
+use App\Models\User\UserBecas;
 use App\Models\User\UserDataExtend;
 use DateTime;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -57,6 +58,10 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function user_data_extend(){
         return $this->hasOne(UserDataExtend::class);
+    }
+
+    public function user_becas(){
+        return $this->hasOne(UserBecas::class);
     }
 
     public function isAdmin(){
@@ -177,7 +182,10 @@ class User extends Authenticatable implements MustVerifyEmail
                     $user->roles()->attach($role);
                 }
                 $user->permissions()->attach(7);
-                $result = $user ?? true;
+
+                if ($user->hasRole('ALUMNO')){
+                    $user->user_becas()->create();
+                }
 
                 $F = new FuncionesController();
                 $F->validImage($user,'profile','profile/');

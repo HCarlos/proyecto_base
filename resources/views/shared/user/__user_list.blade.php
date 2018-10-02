@@ -35,6 +35,7 @@
                             <div class="button-list">
                                 @include('shared.ui_kit.__edit_item')
                                 @include('shared.ui_kit.__remove_item')
+                                @include('shared.ui_kit.__edit_item_becas')
                             </div>
                         </td>
                     </tr>

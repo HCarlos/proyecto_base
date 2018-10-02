@@ -17,6 +17,8 @@
             <!-- content -->
         @include('partials/footer')
     </div>
+
+@include('partials.full_modal')
 @include('partials/script_footer')
 
 </body>

@@ -17,7 +17,7 @@
         <!--- Sidemenu -->
         <ul class="metismenu side-nav">
 
-            <li class="side-nav-title side-nav-item">OPCIONES</li>
+            {{--<li class="side-nav-title side-nav-item">OPCIONES</li>--}}
 
             <li class="side-nav-item">
                 <a href="javascript: void(0);" class="side-nav-link">

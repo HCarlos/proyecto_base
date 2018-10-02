@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Catalogos\User;
 
+use App\Http\Requests\User\UserAlumnoBecasRequest;
 use App\Http\Requests\User\UserRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UserUpdatePasswordRequest;
+use App\Models\User\UserBecas;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
@@ -36,6 +38,7 @@ class UserDataController extends Controller
                 'showEdit'=> 'editUser',
                 'newItem'=> 'newUser',
                 'removeItem'=> 'removeUser',
+                'showEditBecas'=> 'showEditBecas',
             ]
         );
     }
@@ -138,7 +141,7 @@ class UserDataController extends Controller
         ]);
     }
 
-    public function removeUser($id=0){
+    protected function removeUser($id=0){
         $user = User::withTrashed()->findOrFail($id);
         if (isset($user)){
             if(!$user->trashed()){
@@ -152,6 +155,26 @@ class UserDataController extends Controller
             return Response::json(['mensaje' => 'Se ha producido un error.', 'data' => 'Error', 'status' => '200'], 200);
         }
     }
+
+    protected function showEditBecas($Id){
+        $user = User::find($Id);
+        return view ('catalogos.user.user_becas_edit',
+            [
+                'items' => $user,
+            ]
+        );
+    }
+
+    protected function putAluBecas(UserAlumnoBecasRequest $request){
+        $becas = $request->updateBecas();
+        if (isset($becas)){
+            return Response::json(['mensaje' => 'Registro eliminado con éxito', 'data' => 'OK', 'status' => '200'], 200);
+        }else{
+            return Response::json(['mensaje' => 'Error', 'data' => 'Error', 'status' => '422'], 200);
+        }
+
+    }
+
 
 
 

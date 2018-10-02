@@ -44,8 +44,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('edit', 'Catalogos\User\UserDataController@showEditUserData')->name('edit');
     Route::put('Edit', 'Catalogos\User\UserDataController@update')->name('Edit');
     Route::get('showEditProfilePhoto/', 'Catalogos\User\UserDataController@showEditProfilePhoto')->name('showEditProfilePhoto/');
-//    Route::get('showEditProfileEmail/', 'Auth\EditUserDataController@showEditProfileEmail')->name('showEditProfileEmail/');
-//    Route::put('changeEmailUser/', 'Auth\EditUserDataController@changeEmailUser')->name('changeEmailUser/');
 
     Route::get('editUser/{Id}', 'Catalogos\User\UserDataController@showEditUser')->name('editUser');
     Route::put('EditUser', 'Catalogos\User\UserDataController@updateUser')->name('EditUser');
@@ -62,6 +60,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     // USUARIOS
     Route::get('list-users/', 'Catalogos\User\UserDataController@showListUser')->name('listUsers');
+    Route::get('showEditBecas/{Id}', 'Catalogos\User\UserDataController@showEditBecas')->name('showEditBecas');
+    Route::put('putAluBecas', 'Catalogos\User\UserDataController@putAluBecas')->name('putAluBecas');
 
 });
 

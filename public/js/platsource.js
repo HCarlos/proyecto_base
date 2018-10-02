@@ -53,6 +53,26 @@ $(document).ready(function() {
         });
     }
 
+    if ( $(".btnFullModal") ){
+        $(".btnFullModal").on("click", function (event) {
+            event.preventDefault();
+            $("#modalFull .modal-content").empty();
+            $("#modalFull .modal-content").html('<div class="fa-2x"><i class="fa fa-cog fa-spin"></i> Cargado datos...</div>');
+            $("#modalFull").modal('show');
+            var Url = event.currentTarget.id;
+            $(function () {
+                $.ajax({
+                    method: "get",
+                    url: Url
+                })
+                    .done(function (response) {
+                        $("#modalFull .modal-content").html(response);
+                    });
+            });
+        });
+    }
+
+
     if ( $(".listTarget") ){
         $(".listTarget").on('change', function(event) {
             event.preventDefault();

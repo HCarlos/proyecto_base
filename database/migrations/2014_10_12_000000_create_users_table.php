@@ -84,6 +84,21 @@ class CreateUsersTable extends Migration
                 ->onDelete('cascade');
         });
 
+        Schema::create('user_becas', function (Blueprint $table) {
+            $table->increments('id');
+            $table->decimal('beca_sep',10,2)->default(0.00)->nullable();
+            $table->decimal('beca_arji',10,2)->default(0.00)->nullable();
+            $table->decimal('beca_spf',10,2)->default(0.00)->nullable();
+            $table->decimal('beca_bach',10,2)->default(0.00)->nullable();
+            $table->string('observaciones',250)->default('')->nullable();
+            $table->unsignedInteger('user_id');
+            $table->timestamps();
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+        });
+
     }
 
     /**
@@ -96,6 +111,7 @@ class CreateUsersTable extends Migration
         Schema::dropIfExists('user');
         Schema::dropIfExists('user_adress');
         Schema::dropIfExists('user_extend');
+        Schema::dropIfExists('user_becas');
         Schema::dropIfExists('users');
     }
 }

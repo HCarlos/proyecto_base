@@ -19,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
         Blade::component('componentes._card','card');
         Blade::component('componentes._catalogo','catalogo');
         Blade::component('componentes._form_full_modal','formFullModal');
+        Blade::component('componentes._asignaciones','asignaciones');
     }
 
     /**

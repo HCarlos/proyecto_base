@@ -1,30 +1,34 @@
 
 $(document).ready(function() {
 
-    var pathAssign   = ['/asign_role_user/','/asign_permission_role/'];
-    var pathUnAssign = ['/unasign_role_user/','/unasign_permission_role/'];
+    // var pathAssign   = ['/asign_role_user/','/asign_permission_role/'];0
+    // var pathUnAssign = ['/unasign_role_user/','/unasign_permission_role/'];
 
-    var nCols = $('#tblCat').find("tbody > tr:first td").length;
-    var aCol = [];
+    if ( $(".dataTable").length > 0 ){
 
-    for (i = 0; i < nCols - 1; i++) {aCol[i] = {};}
-    aCol[nCols - 1] = {"sorting": false};
+        var nCols = $(".dataTable").find("tbody > tr:first td").length;
+        var aCol = [];
 
-    var table = $('#tblCat').DataTable({
-        searching: false,
-        paging: false,
-        info: true,
-        "pageLength": 50,
-        "order": [[ 0, "desc" ]],
-        "language": {
-            "info": "Mostrando página _PAGE_ de _PAGES_"
-        },
-        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
-        "aoColumns": aCol
-    });
+        for (i = 0; i < nCols - 1; i++) {aCol[i] = {};}
+        aCol[nCols - 1] = {"sorting": false};
+
+        $(".dataTable").DataTable({
+            searching: false,
+            paging: false,
+            info: true,
+            "pageLength": 50,
+            "order": [[ 0, "desc" ]],
+            "language": {
+                "info": "Mostrando página _PAGE_ de _PAGES_"
+            },
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
+            "aoColumns": aCol
+        });
+
+    }
 
 
-    if ( $(".removeItemList") ){
+    if ( $(".removeItemList").length > 0  ){
         $('.removeItemList').on('click', function(event) {
             event.preventDefault();
             var aID = event.currentTarget.id.split('-');
@@ -53,7 +57,7 @@ $(document).ready(function() {
         });
     }
 
-    if ( $(".btnFullModal") ){
+    if ( $(".btnFullModal").length > 0  ){
         $(".btnFullModal").on("click", function (event) {
             event.preventDefault();
             $("#modalFull .modal-content").empty();
@@ -72,23 +76,18 @@ $(document).ready(function() {
         });
     }
 
-
-    if ( $(".listTarget") ){
+    if ( $(".listTarget").length > 0  ){
         $(".listTarget").on('change', function(event) {
             event.preventDefault();
-            var IdArr  = this.id.split('-');
-            var Ida    = IdArr[1];
-            var IdUser = $(this).val();
-            window.location.href = '/list_left_config/'+Ida+'/'+IdUser+'/';
+            window.location.href = '/'+this.id+'/'+$(this).val();
         });
     }
 
-    if ( $(".btnAsign0") ){
+    if ( $(".btnAsign0").length > 0  ){
         $(".btnAsign0").on('click', function(event) {
             event.preventDefault();
             var IdArr  = this.id.split('-');
-            var Cat_Id = IdArr[1];
-            var IdUser = IdArr[2];
+            var urlAsigna = IdArr[0];
             var x = $('.listEle option:selected').val();
             var y = $('select[name="listTarget"] option:selected').val();
             if (isUndefined(x)){
@@ -99,33 +98,30 @@ $(document).ready(function() {
                 $(".listEle option:selected").each(function () {
                     x += $(this).val() + "|";
                 });
-
             }
             if (isUndefined(y) || y <= 0){
                 alert("Seleccione un elemento");
                 return false;
             }
-            var Url = pathAssign[Cat_Id]+y+'/'+x+'/'+Cat_Id;
-
-
+            var Url = '/'+urlAsigna+'/'+y+'/'+x;
             $(function() {
                 $.ajax({
                     method: "GET",
                     url: Url
                 })
                     .done(function( response ) {
-                        window.location.href = '/list_left_config/'+Cat_Id+'/'+y;
+                        window.location.href = response.mensaje;
                     });
             });
-
         });
     }
 
-    if ( $(".btnUnasign0") ){
+    if ( $(".btnUnasign0").length > 0  ){
         $(".btnUnasign0").on('click', function(event) {
             event.preventDefault();
             var IdArr  = this.id.split('-');
-            var Cat_Id = IdArr[1];
+            var urlElimina = IdArr[0];
+            var urlRegresa = IdArr[1];
             var z = $('.lstAsigns option:selected').val();
             var y = $('select[name="listTarget"] option:selected').val();
             if (isUndefined(z)){
@@ -141,32 +137,32 @@ $(document).ready(function() {
                 alert("Seleccione un elemento");
                 return false;
             }
-            var Url = pathUnAssign[Cat_Id]+y+'/'+z+'/'+Cat_Id;
+            var Url = '/'+urlElimina+'/'+y+'/'+z;
             $(function() {
                 $.ajax({
                     method: "GET",
                     url: Url
                 })
                     .done(function( response ) {
-                        window.location.href = '/list_left_config/'+Cat_Id+'/'+y;
+                        window.location.href = response.mensaje;
                     });
             });
 
         });
     }
 
-    if ( $("#btnRefreshNavigator") ){
-        $("#btnRefreshNavigator").on('click', function(event) {
-            event.preventDefault();
-            window.location.reload();
-        });
-    }
+    // if ( $("#btnRefreshNavigator") ){
+    //     $("#btnRefreshNavigator").on('click', function(event) {
+    //         event.preventDefault();
+    //         window.location.reload();
+    //     });
+    // }
 
-    if ( $('#descripcion_pedido') ) {
-        $('#descripcion_pedido').val( $('#paquete_id').find(':selected').text() );
-        $('#paquete_id').on('change',function(event){
-            $('#descripcion_pedido').val( $('#paquete_id').find(':selected').text() );
-        });
-    }
+    // if ( $('#descripcion_pedido') ) {
+    //     $('#descripcion_pedido').val( $('#paquete_id').find(':selected').text() );
+    //     $('#paquete_id').on('change',function(event){
+    //         $('#descripcion_pedido').val( $('#paquete_id').find(':selected').text() );
+    //     });
+    // }
 
 });

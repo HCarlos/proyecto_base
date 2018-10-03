@@ -7,8 +7,10 @@ use App\Http\Requests\User\UserRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UserUpdatePasswordRequest;
 use App\Models\User\UserBecas;
+use App\Role;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 
 class UserDataController extends Controller
@@ -16,10 +18,13 @@ class UserDataController extends Controller
 
     protected $tableName = "";
 
-    protected function showListUser(){
+    protected function showListUser(Request $request){
+        $data = $request->all();
+        //dd($data);
         ini_set('max_execution_time', 300);
         $this->tableName = 'usuarios';
         $items = User::query()
+            ->with('roles', 'permissions')
             ->filtrar(request('search'))
             ->orderByDesc('id')
             ->paginate();
@@ -27,10 +32,13 @@ class UserDataController extends Controller
         $items->appends(request(['search']))->fragment('table');
 
         $user = Auth::User();
+        $roles = Role::all();
 
         return view ('catalogos.user.user_list',
             [
                 'items' => $items,
+                'roles' => $roles,
+                'checkedRoles' => collect(request('roles')),
                 'titulo_catalogo' => "Catálogo de ".ucwords($this->tableName),
                 'user' => $user,
                 'newWindow' => true,

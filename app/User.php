@@ -20,7 +20,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use SoftDeletes, HasApiTokens, Notifiable, HasRoles;
+    use SoftDeletes, HasApiTokens, Notifiable;
+    use HasRoles;
 
     protected $guard_name = 'web';
     protected $table = 'users';
@@ -116,10 +117,10 @@ class User extends Authenticatable implements MustVerifyEmail
         $search = strtoupper($search);
         $query->whereRaw("CONCAT(ap_paterno,' ',ap_materno,' ',nombre) like ?", "%{$search}%")
             ->orWhereRaw("UPPER(username) like ?", "%{$search}%")
-            ->orWhere('id', 'like', "%{$search}%");
-//            ->orWhereHas('team', function ($query) use ($search) {
-//                $query->where('name', 'like', "%{$search}%");
-//            });
+            ->orWhereHas('roles', function ($query) use ($search) {
+                $query->whereRaw("UPPER(name) like ?", "%{$search}%");
+            })
+            ->orWhere('id', 'like',"%{$search}%");
     }
 
     public static function findOrCreateUserWithRole(
@@ -138,7 +139,12 @@ class User extends Authenticatable implements MustVerifyEmail
             if ($password == ''){
                 $password = $username;
             }
-            $fecha_nacimiento =  DateTime::createFromFormat('d/m/Y', $fecha_nacimiento)->format('Y-m-d');
+            //dd($fecha_nacimiento);
+            if ( trim($fecha_nacimiento) !== ""){
+                $fecha_nacimiento =  DateTime::createFromFormat('d/m/Y', $fecha_nacimiento)->format('Y-m-d');
+            }else{
+                $fecha_nacimiento = null;
+            }
             DB::transaction(function ()
             use
             (

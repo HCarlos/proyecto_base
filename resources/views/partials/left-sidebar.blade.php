@@ -31,6 +31,21 @@
                     </li>
                 </ul>
             </li>
+
+            <li class="side-nav-item">
+                <a href="javascript: void(0);" class="side-nav-link">
+                    <i class="dripicons-cogs"></i>
+                    <span> Configuraciones </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <ul class="side-nav-second-level" aria-expanded="false">
+                    <li>
+                        <a href="{{route('asignaRole',['Id'=>0])}}">Roles</a>
+                    </li>
+                </ul>
+            </li>
+
+
         </ul>
 
 

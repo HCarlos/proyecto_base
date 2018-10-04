@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Spatie\Permission\Models\Role;
 
@@ -25,11 +26,13 @@ class RoleController extends Controller
     }
 
     public function index($Id = 0){
-        $listEle     = Role::all()->sortByDesc('name')->pluck('name','name');
-        $listTarget  = User::all()->sortByDesc('username')->pluck('username','id');
+        $listEle     = Role::select('id','name')->pluck('name','id');
+        $listTarget  = User::all()->sortBy(function($item) {
+            return $item->ap_paterno.' '.$item->ap_materno.' '.$item->nombre;
+        });
         $Id = $Id == 0 ? 1 : $Id;
         $users = User::findOrFail($Id);
-        $this->lstAsigns = $users->roles->pluck('name','name');
+        $this->lstAsigns = $users->roles->pluck('name','id');
 
         $user = Auth::User();
         return view ('catalogos.asignaciones.roles_usuario',
@@ -37,7 +40,6 @@ class RoleController extends Controller
                 'listEle' => $listEle,
                 'listTarget' => $listTarget,
                 'lstAsigns' => $this->lstAsigns,
-//                'id' => $ida,
                 'titulo_catalogo' => "Asignación de Roles",
                 'user' => $user,
                 'Id' => $Id,
@@ -58,7 +60,7 @@ class RoleController extends Controller
         $roles = explode('|',$nameRoles);
         foreach($roles AS $i=>$valor) {
             if ($roles[$i] !== ""){
-                $role = Role::where('name', $roles[$i])->first();
+                $role = Role::where('id', $roles[$i])->first();
                 $rl = $user->hasRole($roles[$i]); // Role::where('name',$perm)->count();
                 if (!$rl) {
                     $user->roles()->attach($role);
@@ -79,7 +81,7 @@ class RoleController extends Controller
         $roles = explode('|',$nameRoles);
         foreach($roles AS $i=>$valor) {
             if ($roles[$i] !== "") {
-                $role = Role::where('name', $roles[$i])->first();
+                $role = Role::where('id', $roles[$i])->first();
                 $user->removeRole($role);
                 if ($roles[$i] === 'administrator'){
                     $user->admin = false;

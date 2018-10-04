@@ -2,16 +2,15 @@
 
 namespace Maatwebsite\Excel\Imports;
 
-use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\DatabaseManager;
 
 class ModelManager
 {
     /**
-     * @var Collection|Model[]
+     * @var Model[][]
      */
-    private $models;
+    private $models = [];
 
     /**
      * @var DatabaseManager
@@ -23,8 +22,7 @@ class ModelManager
      */
     public function __construct(DatabaseManager $db)
     {
-        $this->models = new Collection();
-        $this->db     = $db;
+        $this->db = $db;
     }
 
     /**
@@ -38,11 +36,19 @@ class ModelManager
     }
 
     /**
-     * @param Model $model
+     * @param Model[] $models
      */
-    public function add(Model $model)
+    public function add(Model ...$models)
     {
-        $this->models->push($model);
+        foreach ($models as $model) {
+            $name = get_class($model);
+
+            if (!isset($this->models[$name])) {
+                $this->models[$name] = [];
+            }
+
+            $this->models[$name][] = $this->prepare($model);
+        }
     }
 
     /**
@@ -59,7 +65,7 @@ class ModelManager
                 $this->singleFlush();
             }
 
-            $this->models = new Collection();
+            $this->models = [];
         });
     }
 
@@ -68,12 +74,11 @@ class ModelManager
      */
     private function massFlush()
     {
-        /** @var Model $model */
-        $model = get_class($this->models[0]);
-
-        $model::query()->insert(
-            collect($this->models)->map->getAttributes()->toArray()
-        );
+        foreach ($this->models as $model => $models) {
+            $model::query()->insert(
+                collect($models)->map->getAttributes()->toArray()
+            );
+        }
     }
 
     /**
@@ -81,6 +86,34 @@ class ModelManager
      */
     private function singleFlush()
     {
-        $this->models->each->saveOrFail();
+        collect($this->models)->flatten()->each->saveOrFail();
+    }
+
+    /**
+     * @param Model $model
+     *
+     * @return Model
+     */
+    private function prepare(Model $model): Model
+    {
+        if ($model->usesTimestamps()) {
+            $time = $model->freshTimestamp();
+
+            $updatedAtColumn = $model->getUpdatedAtColumn();
+
+            // If model has updated at column and not manually provided.
+            if ($updatedAtColumn && null === $model->{$updatedAtColumn}) {
+                $model->setUpdatedAt($time);
+            }
+
+            $createdAtColumn = $model->getCreatedAtColumn();
+
+            // If model has created at column and not manually provided.
+            if ($createdAtColumn && null === $model->{$createdAtColumn}) {
+                $model->setCreatedAt($time);
+            }
+        }
+
+        return $model;
     }
 }

@@ -19,19 +19,17 @@ class UserDataController extends Controller
     protected $tableName = "";
 
     protected function showListUser(Request $request){
-        $data = $request->all();
-        //dd($data);
         ini_set('max_execution_time', 300);
         $this->tableName = 'usuarios';
         $items = User::query()
-            ->with('roles', 'permissions')
-            ->filtrar(request('search'))
+            ->filterBy($request->all(['search','roles','palabras_roles']))
             ->orderByDesc('id')
             ->paginate();
 
-        $items->appends(request(['search']))->fragment('table');
+        $items->appends(request(['search','roles']))->fragment('table');
 
         $user = Auth::User();
+//        $roles = Role::select('id','name')->take(6)->get();
         $roles = Role::all();
 
         return view ('catalogos.user.user_list',

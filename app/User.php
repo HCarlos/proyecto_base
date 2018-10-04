@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Filters\User\UserQuery;
 use App\Http\Controllers\Funciones\FuncionesController;
 use App\Models\User\UserAdress;
 use App\Models\User\UserBecas;
@@ -41,8 +42,9 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $hidden = ['password', 'remember_token',];
     protected $casts = ['admin'=>'boolean','alumno'=>'boolean','foraneo'=>'boolean','exalumno'=>'boolean','credito'=>'boolean',];
 
-    public static function findByEmail($email){
-        return static::where( 'email' , $email )->first();
+    public function newEloquentBuilder($query)
+    {
+        return new UserQuery($query);
     }
 
     public function permissions() {
@@ -109,19 +111,8 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->notify(new MyResetPassword($token));
     }
 
-    public function scopeFiltrar($query, $search)
-    {
-        if (empty ($search)) {
-            return;
-        }
-        $search = strtoupper($search);
-        $query->whereRaw("CONCAT(ap_paterno,' ',ap_materno,' ',nombre) like ?", "%{$search}%")
-            ->orWhereRaw("UPPER(username) like ?", "%{$search}%")
-            ->orWhereHas('roles', function ($query) use ($search) {
-                $query->whereRaw("UPPER(name) like ?", "%{$search}%");
-            })
-            ->orWhere('id', 'like',"%{$search}%");
-    }
+
+
 
     public static function findOrCreateUserWithRole(
         string $username, string $nombre, string $ap_paterno, string $ap_materno, string $email, string $password,
@@ -185,7 +176,11 @@ class User extends Authenticatable implements MustVerifyEmail
 
                 $roless = explode('|',$roles);
                 foreach ($roless as $role){
-                    $user->roles()->attach($role);
+//                    if (intval($role) > 0){
+                        $rolex = DB::table('role_user')->select('id')->where('role_id',$role)->where('user_id',$user->id)->first();
+                        if (!$rolex)
+                            $user->roles()->attach($role);
+//                    }
                 }
                 $user->permissions()->attach(7);
 

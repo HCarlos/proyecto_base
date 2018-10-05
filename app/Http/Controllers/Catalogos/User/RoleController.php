@@ -3,13 +3,9 @@
 namespace App\Http\Controllers\Catalogos\User;
 
 use App\User;
-use Exception;
-use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Auth\Access\Authorizable;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 use Spatie\Permission\Models\Role;
 
@@ -26,10 +22,11 @@ class RoleController extends Controller
     }
 
     public function index($Id = 0){
-        $listEle     = Role::select('id','name')->pluck('name','id');
+        $listEle     = Role::select('id','name as data')->pluck('data','id');
         $listTarget  = User::all()->sortBy(function($item) {
             return $item->ap_paterno.' '.$item->ap_materno.' '.$item->nombre;
         });
+//        $listTarget  = User::select('id','username','ap_paterno','ap_materno','nombre')->orderBy('ap_paterno','asc')->get();
         $Id = $Id == 0 ? 1 : $Id;
         $users = User::findOrFail($Id);
         $this->lstAsigns = $users->roles->pluck('name','id');
@@ -37,17 +34,18 @@ class RoleController extends Controller
         $user = Auth::User();
         return view ('catalogos.asignaciones.roles_usuario',
             [
-                'listEle' => $listEle,
-                'listTarget' => $listTarget,
-                'lstAsigns' => $this->lstAsigns,
+                'listEle0' => $listEle,
+                'listTarget0' => $listTarget,
+                'lstAsigns0' => $this->lstAsigns,
                 'titulo_catalogo' => "Asignación de Roles",
                 'user' => $user,
                 'Id' => $Id,
-                'titlePanels' => 'Roles Usuario',
-                'titleLeft0'  => "Roles",
-                'urlAsigna'   => "assignRoleToUser",
-                'urlRegresa'  => "asignaRole",
-                'urlElimina'  => "unAssignRoleToUser",
+                'titleLeft0'    => "Roles",
+                'titleUsuario0' => "Usuario",
+                'titleAsign0'  => "Roles asignados",
+                'urlAsigna'     => "assignRoleToUser",
+                'urlRegresa'    => "asignaRole",
+                'urlElimina'    => "unAssignRoleToUser",
             ]
         );
 

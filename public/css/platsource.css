@@ -435,3 +435,32 @@ ul.role-list-hrz li a {
 .margin-right-2em{
 	margin-right: 2em !important;
 }
+
+.w-30vh{
+    width: 30vh;
+}
+.w-35vh{
+	width: 35vh;
+}
+.w-40vh{
+	width: 40vh;
+}
+.w-45vh{
+	width: 45vh;
+}
+.w-50vh{
+	width: 50vh;
+}
+
+.roles-position-pagination{
+    position: relative !important;
+    z-index: 4 !important;
+    overflow: visible !important;
+}
+
+.asign-pnl-left{height: 70vh !important;}
+.asign-pnl-center{height: 70vh !important;}
+.asign-pnl-right{height: 70vh !important;}
+
+.asign-lstEle0{height: 59vh !important;}
+.asign-lstAsigns0{height: 50vh !important;}

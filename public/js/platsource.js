@@ -61,7 +61,7 @@ $(document).ready(function() {
         $(".btnFullModal").on("click", function (event) {
             event.preventDefault();
             $("#modalFull .modal-content").empty();
-            $("#modalFull .modal-content").html('<div class="fa-2x"><i class="fa fa-cog fa-spin"></i> Cargado datos...</div>');
+            $("#modalFull .modal-content").html('<div class="fa-2x m-2"><i class="fa fa-cog fa-spin"></i> Cargado datos...</div>');
             $("#modalFull").modal('show');
             var Url = event.currentTarget.id;
             $(function () {
@@ -90,7 +90,6 @@ $(document).ready(function() {
             var urlAsigna = IdArr[0];
             var x = $('.listEle option:selected').val();
             var y = $('select[name="listTarget"] option:selected').val();
-            // alert(y);
             if (isUndefined(x)){
                 alert("Seleccione una opción disponible");
                 return false;
@@ -105,7 +104,6 @@ $(document).ready(function() {
                 return false;
             }
             var Url = '/'+urlAsigna+'/'+y+'/'+x;
-            // alert(Url);
             $(function() {
                 $.ajax({
                     method: "GET",

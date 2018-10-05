@@ -73,6 +73,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('assignRoleToUser/{Id}/{nameRoles}','Catalogos\User\RoleController@asignar')->name('assignRoleToUser');
     Route::get('unAssignRoleToUser/{Id}/{nameRoles}','Catalogos\User\RoleController@desasignar')->name('unAssignRoleToUser');
 
+    Route::get('asignaPermission/{Id}','Catalogos\User\PermissionController@index')->name('asignaPermission');
+    Route::get('assignPermissionToUser/{Id}/{namePermissions}','Catalogos\User\PermissionController@asignar')->name('assignPermissionToUser');
+    Route::get('unAssignPermissionToUser/{Id}/{namePermissions}','Catalogos\User\PermissionController@desasignar')->name('unAssignPermissionToUser');
 
 });
 

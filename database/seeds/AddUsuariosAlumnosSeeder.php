@@ -14,6 +14,8 @@ class AddUsuariosAlumnosSeeder extends Seeder
     {
 
         User::findOrCreateUserWithRole('alu5816','MARIA JULIETA','ARANGO','BERNAT','','','YUCATAN','169','','FRACC. GUADALUPE','VILLAHERMOSA','','AABJ150930MTCRRLA8','','30/09/2015','0','','','',7397,1,'','6');
+
+
         User::findOrCreateUserWithRole('alu5772','MARIANO','CAMELO','GAUDIANO','','','CERRADA JOSE DEL CARMEN ALEJANDRO','NO.103 INT.12','','RESIDENCIAL DOMUS BONANZA','VILLAHERMOSA','','CAGM150611HTCMDRA0','','11/06/2015','1','','','',7295,1,'','6');
         User::findOrCreateUserWithRole('alu5771','DIEGO','CANTON','GASQUE','','','CERRADA VIOLETA DUEÃAS','NO.68','','FRACC. COUNTRY SAN MARCOS','VILLAHERMOSA','','CAGD151128HTCNSGA2','','28/11/2015','1','','','',7296,1,'','6');
         User::findOrCreateUserWithRole('alu5834','ELISA','CELORIO','TARACENA','','','AV. RIO USUMACINTA','301','ESQ. CALLE 5','REAL DEL SUR','VILLAHERMOSA','86179','CETE150417MTCLRLA2','','17/04/2015','0','','','',7415,1,'','6');
@@ -1025,6 +1027,9 @@ class AddUsuariosAlumnosSeeder extends Seeder
         User::findOrCreateUserWithRole('alu5256','JOSE ALEXANDRO','DOMINGUEZ','GOMEZ','','','PROL. AV. MEXICO','403','','LOMA REAL','VILLAHERMOSA','','DOGA020425HTCMMLA1','','25/04/2002','1','','','',2302,1,'','6');
         User::findOrCreateUserWithRole('alu4777','MARIO LUIS','BERRIEL','ROSALDO','','','PROL. AV. MEXICO','619-3','','COL. SABINA','VILLAHERMOSA','','BERM020724HTCRSRA9','','24/07/2002','1','','','',2198,1,'','6');
         User::findOrCreateUserWithRole('alu5277','JOSE MANUEL','SILVA','GUTIERREZ','','','CERRADA. DE LAS FANTASIAS','CASA 9 MZ. 2','','RESIDENCIAL LAS HADAS','VILLAHERMOSA','86039','SIGM000505HTCLTNA4','','05/05/2000','1','','','',2344,1,'','6');
+
+
+
 
     }
 }

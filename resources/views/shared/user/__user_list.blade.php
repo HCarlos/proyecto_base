@@ -19,7 +19,7 @@
                     <tr>
                         <td class="table-user">{{$item->id}}</td>
                         <td>{{$item->username}}</td>
-                        <td>{{utf8_decode($item->FullName)}}</td>
+                        <td>{{($item->FullName)}}</td>
                        <td class="action-icon text-center">@if($item->genero==0)
                                <i class="fas fa-female text-danger"></i>
                            @else

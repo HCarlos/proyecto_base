@@ -6,30 +6,26 @@ use App\Http\Requests\User\UserAlumnoBecasRequest;
 use App\Http\Requests\User\UserRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UserUpdatePasswordRequest;
-use App\Models\User\UserBecas;
 use App\Role;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 
-class UserDataController extends Controller
-{
+class UserDataController extends Controller{
 
     protected $tableName = "";
 
     protected function showListUser(Request $request){
         ini_set('max_execution_time', 300);
         $this->tableName = 'usuarios';
+        $filters = $request->all(['search','roles','palabras_roles']);
         $items = User::query()
-            ->filterBy($request->all(['search','roles','palabras_roles']))
+            ->filterBy( $filters )
             ->orderByDesc('id')
             ->paginate();
-
-        $items->appends(request(['search','roles']))->fragment('table');
-
+        $items->appends( $filters )->fragment('table');
         $user = Auth::User();
-//        $roles = Role::select('id','name')->take(6)->get();
         $roles = Role::all();
 
         return view ('catalogos.user.user_list',

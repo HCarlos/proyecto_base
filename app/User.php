@@ -2,16 +2,14 @@
 
 namespace App;
 
+use App\Filters\User\UserImport;
 use App\Filters\User\UserQuery;
-use App\Http\Controllers\Funciones\FuncionesController;
 use App\Models\User\UserAdress;
 use App\Models\User\UserBecas;
 use App\Models\User\UserDataExtend;
-use DateTime;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\DB;
 use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -23,6 +21,7 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use SoftDeletes, HasApiTokens, Notifiable;
     use HasRoles;
+    use UserImport;
 
     protected $guard_name = 'web';
     protected $table = 'users';
@@ -110,95 +109,6 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendPasswordResetNotification($token){
         $this->notify(new MyResetPassword($token));
     }
-
-
-
-
-    public static function findOrCreateUserWithRole(
-        string $username, string $nombre, string $ap_paterno, string $ap_materno, string $email, string $password,
-        string $calle='', string $num_ext='', string $num_int='', string $colonia='', string $localidad='',
-        string $cp='', string $curp='', string $lugar_nacimiento='', string $fecha_nacimiento, int $genero=0,
-        string $emails, string $celulares, string $telefonos, int $iduser_ps, int $empresa_id, string $ocupacion='',
-        string $roles
-        ){
-        $result = false;
-        $user = static::where('username', $username)->where('email', $email)->first();
-        if (!$user) {
-            if ($email == ''){
-                $email = $username.'@example.com';
-            }
-            if ($password == ''){
-                $password = $username;
-            }
-            //dd($fecha_nacimiento);
-            if ( trim($fecha_nacimiento) !== ""){
-                $fecha_nacimiento =  DateTime::createFromFormat('d/m/Y', $fecha_nacimiento)->format('Y-m-d');
-            }else{
-                $fecha_nacimiento = null;
-            }
-            DB::transaction(function ()
-            use
-            (
-                $username, $nombre, $ap_paterno, $ap_materno, $email, $password, $curp,
-                $calle, $num_ext, $num_int, $colonia, $localidad, $cp,
-                $lugar_nacimiento, $fecha_nacimiento, $genero, $emails, $celulares, $telefonos,
-                $iduser_ps, $empresa_id, $ocupacion, $roles
-            )
-            {
-                $user = static::create([
-                    'username'=>$username,
-                    'nombre'=>$nombre,
-                    'ap_paterno'=>$ap_paterno,
-                    'ap_materno'=>$ap_materno,
-                    'email'=>$email,
-                    'password' => bcrypt($password),
-                    'curp' => $curp,
-                    'fecha_nacimiento' => $fecha_nacimiento,
-                    'genero' => $genero,
-                    'emails' => $emails,
-                    'celulares' => $celulares,
-                    'telefonos' => $telefonos,
-                    'iduser_ps' => $iduser_ps,
-                    'empresa_id' => $empresa_id,
-                ]);
-                $user->user_adress()->create([
-                    'calle' => $calle,
-                    'num_ext' => $num_ext,
-                    'num_int' => $num_int,
-                    'colonia' => $colonia,
-                    'localidad' => $localidad,
-                    'cp' => $cp,
-                ]);
-                $user->user_data_extend()->create([
-                    'ocupacion'=> $ocupacion,
-                    'lugar_nacimiento' => $lugar_nacimiento,
-                ]);
-
-                $roless = explode('|',$roles);
-                foreach ($roless as $role){
-//                    if (intval($role) > 0){
-                        $rolex = DB::table('role_user')->select('id')->where('role_id',$role)->where('user_id',$user->id)->first();
-                        if (!$rolex)
-                            $user->roles()->attach($role);
-//                    }
-                }
-                $user->permissions()->attach(7);
-
-                if ($user->hasRole('ALUMNO')){
-                    $user->user_becas()->create();
-                }
-
-                $F = new FuncionesController();
-                $F->validImage($user,'profile','profile/');
-
-            });
-
-        }
-
-        return $result;
-
-    }
-
 
 }
 

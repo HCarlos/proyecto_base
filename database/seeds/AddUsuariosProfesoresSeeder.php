@@ -1,7 +1,7 @@
 <?php
 
-use App\User;
 use Illuminate\Database\Seeder;
+use App\User;
 
 class AddUsuariosProfesoresSeeder extends Seeder
 {
@@ -13,9 +13,10 @@ class AddUsuariosProfesoresSeeder extends Seeder
     public function run()
     {
 
+//        ﻿User::findOrCreateUserWithRole('dclutzow','DORA CONSUELO','LUTZOW','LUNA','','','CALLE TORTUGUERO','MZ .1 LOTE 123 CASA 12','','FRACC. CHILAM BALAM','VILLAHERMOSA','86195','','','','0','doralutzow@gmail.com','9932069763','',1287,1,'','21');
 
 
-        User::findOrCreateUserWithRole('dclutzow','DORA CONSUELO','LUTZOW','LUNA','','','CALLE TORTUGUERO','MZ1, LOTE 123 CASA 12','','FRACC. CHILAM BALAM','VILLAHERMOSA','86195','','','','0','doralutzow@gmail.com','9932069763','',1287,1,'','21');
+        User::findOrCreateUserWithRole('ocaxxxna','CARLOS ARTURO','OCAÑA','RAMIREZ','','','','','','','VILLAHERMOSA','','','','','0','','','',67,1,'','5');
         User::findOrCreateUserWithRole('pro0106','SOFIA ELENA','ARIAS','HERNANDEZ','','','YUCATAN','8 MZA. 10','','REAL DE SAN JORGE E-3 COL. SABINA','VILLAHERMOSA','','','','','0','sofiaelena71@gmail','9931288215','',1361,1,'','18|20|21');
         User::findOrCreateUserWithRole('pro0108','LUIS','ARIAS','LOPEZ','','','CIRCUNVALACION POCHITOQUE','MZA. 7 LT 7','','FRACC. LA ISLA','CENTRO','86126','','','','1','luis_ariaslopez@hotmail.com','9931177519','',1359,1,'','21');
         User::findOrCreateUserWithRole('pro0109','VICENTA MARIA','BAEZA','ALEJANDRO','','','CARRETERA VILLAHERMOSA-TEAPA ','KM. 15','','CALLEJON BAEZA FRENTE A PARRILLA 2','VILLAHERMOSA','','','','','0','vicenta.baeza@hotmail.com','9932781654','',1358,1,'','21');
@@ -44,7 +45,7 @@ class AddUsuariosProfesoresSeeder extends Seeder
         User::findOrCreateUserWithRole('pro0161','ESTHER','FLORES','DORLES','','','CALLE NO. 2','CASA NO.6','','FRACC. BUGANBILIAS ATASTA','VILLAHERMOSA','','','','','0','tetearjii2@hotmail.com','9931525201','',1309,1,'','20|21|26');
         User::findOrCreateUserWithRole('pro0164','FRANCISCA','GARCIA','DEL VALLE','','','','','','','VILLAHERMOSA','','','','','0','','','',1306,1,'','17');
         User::findOrCreateUserWithRole('pro0169','WENDY MARIA','GIORGANA','LEON','','','NIÑO ARTILLERO','EDIF. C DEPTO. 102','','','','','','','','0','wendy_giorgana@hotmail.com','9932511854','9931603281',1302,1,'','21|24');
-        User::findOrCreateUserWithRole('pro0170','GUADALUPE','GOMEZ','0','','','','','','','VILLAHERMOSA','','','','','0','','','',1300,1,'','17');
+        User::findOrCreateUserWithRole('pro0170','GUADALUPE','GOMEZ','','','','','','','','VILLAHERMOSA','','','','','0','','','',1300,1,'','17');
         User::findOrCreateUserWithRole('pro0174','TERESA DE JESUS','GONZALEZ','CASTELLANOS','','','LEANDRO LEON ARREVALO','121','','PARRILLA CENTRO CARRETERA VILLAHERMOSA KM 10.5','VILLAHERMOSA','','','','','1','tere.gonzalez.castellanos@yahoo.com.mx','9931775761','',1296,1,'','20|21');
         User::findOrCreateUserWithRole('pro0175','SARA','GONZALEZ','COVARRUBIAS','','','AV. LAGUNA DEL ROSARIO','LOTE 1 MZA. 58','','FRACC. LAGUNAS','VILLAHERMOSA','','','','','0','saracovarrubias.g@gmail.com','9931192538','',1295,1,'','21');
         User::findOrCreateUserWithRole('pro0181','GUILLERMO','GONZALEZ','PULIDO','','','','','','','VILLAHERMOSA','','','','','0','','','',1369,1,'','21');
@@ -52,6 +53,7 @@ class AddUsuariosProfesoresSeeder extends Seeder
         User::findOrCreateUserWithRole('pro0187','MARTIN','HERNANDEZ','LOPEZ','','','CARR. GUAYTALPA - SOYATACO KM 0.1','S/N','','POB. GUAYTALPA','NACAJUCA','86220','','','','1','martin.hernandez126@gmail.com','9931152839','',1375,1,'','21');
         User::findOrCreateUserWithRole('pro0189','ALMA DELIA','HERNANDEZ','SANCHEZ','','','CDA. MARGARITAS','NO.2','','R/A BUENAVISTA 2DA.','CENTRO','86250','','','','0','alma_delia_60@hotmail.com','9931147052','',1377,1,'','7|21');
         User::findOrCreateUserWithRole('pro0190','TOMAS','HERRERA','CASANOVA','','','','','','','VILLAHERMOSA','','','','','0','','','',1378,1,'','21');
+        User::findOrCreateUserWithRole('pro0193','HINOJOSA','MARIANELA','RAMIREZ','','','','','','','VILLAHERMOSA','','','','','0','','','',1381,1,'','17');
         User::findOrCreateUserWithRole('pro0194','HILDA ENRIQUETA','ISLAS','HERNANDEZ','','','PERIFIRICO CARLOS PELLICER CAMARA','1500','','EDIFICIO C-1 JARDINES DEL SUR','VILLAHERMOSA','86150','','','','0','quetaislas@hotmail.com','9932101653','',1382,1,'','7|21');
         User::findOrCreateUserWithRole('pro0195','TANIA GABRIELA','JAUME','PRIEGO','','','','','','','VILLAHERMOSA','','','','','0','','','',1383,1,'','21|26');
         User::findOrCreateUserWithRole('pro0196','ALEJANDRO','JIMENEZ','DE LA CRUZ','','','AQUILES SERDAN','314','','COL. EL AGUILA','VILLAHERMOSA','','','','','1','arjii.prof.alexx@gmail.com','9931975305','',1384,1,'','21');
@@ -88,7 +90,7 @@ class AddUsuariosProfesoresSeeder extends Seeder
         User::findOrCreateUserWithRole('pro0252','JIMENA PAOLA','PARRILLAT','FIGUEROA','','','CERRADA CANTALORIA','104 DEPTO. 2 TORRE 1','','COL. 1RA. DE MAYO','VILLAHERMOSA','','','','','0','mrsjimeparrillat@gmail.com','9933189839','',1438,1,'','20|21');
         User::findOrCreateUserWithRole('pro0254','YOEL','PAZ','LOPEZ','','','FOVISTE','2','','DEPTO. 501 EDIF. 2','VILLAHERMOSA','','','','','1','yoepazlo@gmail.com','9931047260','',1440,1,'','21');
         User::findOrCreateUserWithRole('pro0259','ILIANA DEL CARMEN','PEREZ','LOPEZ','','','','20','','FRACC. CONTRY PALMA','VILLAHERMOSA','','','','','0','lilip1975@hotmail.com','9932423152','',1445,1,'','20|26');
-        User::findOrCreateUserWithRole('pro0261','CLAUDIA DEL CARMEN','PEREZ','MARTINEZ','','','CARR. SAMARKANDA','SIN NÚMERO','','EJIDO SAMARKANDA','NACAJUCA','','','','','0','claudiaarji@gmail.com','9935900369','',1447,1,'','21');
+        User::findOrCreateUserWithRole('pro0261','CLAUDIA DEL CARMEN','PEREZ','MARTINEZ','','','CARR. SAMARKANDA ','SIN NÚMERO','','EJIDO SAMARKANDA','NACAJUCA','','','','','0','claudiaarji@gmail.com','9935900369','',1447,1,'','21');
         User::findOrCreateUserWithRole('pro0264','YOCELIN','PRIEGO','MORALES','','','','','','','VILLAHERMOSA','','','','','0','','','',1450,1,'','18|7|21');
         User::findOrCreateUserWithRole('pro0265','JOSUE','PULIDO','PADILLA','','','MOISÉS SOSA','12','','COL. 1RO. DE MAYO','VILLAHERMOSA','86190','','','','1','josuepulido11@gmail.com','9931559082','',1451,1,'','20|21');
         User::findOrCreateUserWithRole('pro0267','JUAN','QUE','ZETINA','','','CALLE 18','MZA. 28 LTE 5','','FRACC. SANTA ELENA','VILLAHERMOSA','','','','','1','juan-que67@hotmail.com','9933208612','',1453,1,'','21');
@@ -100,11 +102,14 @@ class AddUsuariosProfesoresSeeder extends Seeder
         User::findOrCreateUserWithRole('pro0274','ADALIA','REYES','JIMENEZ','','','','','','','VILLAHERMOSA','','','','','0','','','',1460,1,'','5');
         User::findOrCreateUserWithRole('pro0277','JUDITH','RINCON','CANELA','','','','','','','VILLAHERMOSA','','','','','0','','','',1463,1,'','5');
         User::findOrCreateUserWithRole('pro0278','DEYSI','RIVERA','IZQUIERDO','','','','','','','VILLAHERMOSA','','','','','0','','','',1464,1,'','8|5|8');
+        User::findOrCreateUserWithRole('pro0279','MARGARITA FERNANDA','RODRIGUEZ','MANZUR','','','','','','','VILLAHERMOSA','','','','','0','','','',1465,1,'','18|16|23|24');
         User::findOrCreateUserWithRole('pro0281','JUANA MARIA','ROMAN','CAMARA','','','','','','','VILLAHERMOSA','','','','','0','','','',1467,1,'','25');
+        User::findOrCreateUserWithRole('pro0287','CELIA','ROSADO','LANDERO','','','','','','','VILLAHERMOSA','','','','','0','','','',1473,1,'','8|20');
         User::findOrCreateUserWithRole('pro0289','MELINA','SAN MIGUEL','GARCIA','','','MOISÉS SOSA','12','','COL. 1O DE MAYO','VILLAHERMOSA','86190','','','','0','mesamiga@gmail.com','','',1475,1,'','18|21|24');
+        User::findOrCreateUserWithRole('pro0293','DE LA CRUZ','CARLOS HECTOR','SANTARELLI','','','','','','','VILLAHERMOSA','','','','','0','','','',1479,1,'','5');
         User::findOrCreateUserWithRole('pro0294','WILBER','SARAO','PEREZ','','','MAR DE CORTÉS','9','','RESIDENCIAL RÍO VIEJO','VILLAHERMOSA','86127','','','','1','matematiconoaburrido@gmail.com','9932072077','',1480,1,'','7|21|24');
         User::findOrCreateUserWithRole('pro0295','BASILIO','SERAFIN','FERIA','','','CALLE TINTO (ENTRE TINTO Y CEDRO)','MZA. 10 LOTE 9','','FRACC. STA. FÉ PARRILLA','VILLAHERMOSA','86184','','','','1','bacho.arji@gmail.com','9931279548','',1481,1,'','7|21');
-        User::findOrCreateUserWithRole('pro0299','ANDREA','TELLAECHE','MERINO','','','ANDRES GARCÍA','420','','COL. PRIMERO DE MAYO','VILLAHERMOSA','86190','','','','0','latellaeche@hotmail.com','9931603347','',1485,1,'','18|20|7|21');
+        User::findOrCreateUserWithRole('pro0299','ANDREA','TELLAECHE','MERINO','','','ANDRES GARCÍA ','420','','COL. PRIMERO DE MAYO','VILLAHERMOSA','86190','','','','0','latellaeche@hotmail.com','9931603347','',1485,1,'','18|20|7|21');
         User::findOrCreateUserWithRole('pro0302','GRACIELA','TRUJILLO','ZENTELLA','','','','','','','VILLAHERMOSA','','','','','0','','','',1488,1,'','17');
         User::findOrCreateUserWithRole('pro0303','ANGEL ALBERTO','VALENZUELA','RODRIGUEZ','','','','','','','','','','','','1','','','',1489,1,'','21');
         User::findOrCreateUserWithRole('pro0315','ESTELA','ZURITA','RANGEL','','','CALLE LOTO','CASA 5','','FRACC. HACIENDA BUENAVISTA','VILLAHERMOSA','','','','','0','estelazurita1@hotmail.com','9933062993','',1502,1,'','20|21');
@@ -125,7 +130,16 @@ class AddUsuariosProfesoresSeeder extends Seeder
         User::findOrCreateUserWithRole('pro0372','KARLA PATRICIA','VILA','ARBOLEYA','','','','','','','','','','','','0','karla_vila@hotmail.com','9933591941','',7420,1,'','18|20|21');
         User::findOrCreateUserWithRole('pro0373','ULISES','HERNANDEZ','ROMERO','','','RIO NUEVO','No. 101-A','','FRACC. JOSÉ COLOMO COL. ATASTA','VILLAHERMOSA','','','','','1','hernandezromeroulises@gmail.com','9931600158','',7422,1,'','21');
         User::findOrCreateUserWithRole('pro0374','CLAUDIA ELENA','PEREZ','PEREZ','','','AV. DEL GOLFO','MZA. 22 LTE. 2-12','','FRACC. VALLEREAL SECTOR 4 POMOCA','VILLAHERMOSA','','','','','0','clauxpp2@gmail.com','9931337966','',7431,1,'','26');
+        User::findOrCreateUserWithRole('pro0375','CESAR ALEXANDER','CITUL','PEREZ','','','','','','','VILLAHERMOSA','','','','','1','mimail@mimail.com','.','.',7471,1,'','21');
         User::findOrCreateUserWithRole('pro0376','CHRISTIAN IVAN','JAUREGUI','COTO','','','MARIANO ABASOLO','8','','COL. CENTRO','VILLAHERMOSA','','','','','0','c.jauregui99@hotmail.com','9931561700','',7507,1,'','21');
+        User::findOrCreateUserWithRole('pro0377','GARCIA','DARNEYI','VINAGRE','','','','','','','VILLAHERMOSA','','','','','0','','','',7510,1,'','5|22');
+        User::findOrCreateUserWithRole('pro0378','MAGNOLIA','CANAL','MOCTEZUMA','','','','','','','VILLAHERMOSA','','','','','0','','','',7512,1,'','18');
+        User::findOrCreateUserWithRole('rclaudia','CLAUDIA','DE LA ROSA','ROSALES','','','','','','','VILLAHERMOSA','','','','','0','','','',1292,1,'','10|13');
+        User::findOrCreateUserWithRole('relizabeth','ELIZABETH','ROSAS','JIMENEZ','','','','','','','VILLAHERMOSA','','','','','0','','','',1293,1,'','22');
+        User::findOrCreateUserWithRole('rossanita','METELIN','ROSSANA','LLERGO','','','','','','','VILLAHERMOSA','','','','','0','','','',4741,1,'','11');
+        User::findOrCreateUserWithRole('rsilvia','SILVIA DEL CARMEN','DE LA ROSA','ROSALES','','','','','','','VILLAHERMOSA','','','','','0','','','',1290,1,'','12');
+        User::findOrCreateUserWithRole('vcecilia','CECILIA','VILLEGAS','GARCIA','','','','','','','VILLAHERMOSA','','','','','0','','','',1291,1,'','14');
+
 
 
 

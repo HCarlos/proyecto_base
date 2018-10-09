@@ -542,6 +542,7 @@ class ComposerStaticInit8dd649bf0bc0168ddb00b80de0c75631
 
     public static $classMap = array (
         'AddUsuariosAlumnosSeeder' => __DIR__ . '/../..' . '/database/seeds/AddUsuariosAlumnosSeeder.php',
+        'AddUsuariosExalumnosSeeder' => __DIR__ . '/../..' . '/database/seeds/AddUsuariosExalumnosSeeder.php',
         'AddUsuariosPersonasSeeder' => __DIR__ . '/../..' . '/database/seeds/AddUsuariosPersonasSeeder.php',
         'AddUsuariosProfesoresSeeder' => __DIR__ . '/../..' . '/database/seeds/AddUsuariosProfesoresSeeder.php',
         'App\\Classes\\ValidatorPassword' => __DIR__ . '/../..' . '/app/Classes/ValidatorPassword.php',

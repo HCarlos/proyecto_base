@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'AddUsuariosAlumnosSeeder' => $baseDir . '/database/seeds/AddUsuariosAlumnosSeeder.php',
+    'AddUsuariosExalumnosSeeder' => $baseDir . '/database/seeds/AddUsuariosExalumnosSeeder.php',
     'AddUsuariosPersonasSeeder' => $baseDir . '/database/seeds/AddUsuariosPersonasSeeder.php',
     'AddUsuariosProfesoresSeeder' => $baseDir . '/database/seeds/AddUsuariosProfesoresSeeder.php',
     'App\\Classes\\ValidatorPassword' => $baseDir . '/app/Classes/ValidatorPassword.php',

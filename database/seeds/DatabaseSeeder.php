@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
                 AddUsuariosAlumnosSeeder::class,
                 AddUsuariosPersonasSeeder::class,
                 AddUsuariosProfesoresSeeder::class,
+                AddUsuariosExalumnosSeeder::class,
             ]);
     }
 }

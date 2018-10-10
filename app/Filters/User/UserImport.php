@@ -24,7 +24,8 @@ trait UserImport
         string $roles
     ){
         $result = false;
-        $user = static::where('username', $username)->where('email', $email)->first();
+//        $user = static::where('username', $username)->where('email', $email)->first();
+        $user = static::where('username', $username)->first();
         if (!$user) {
             if ($email == ''){
                 $email = $username.'@example.com';

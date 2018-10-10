@@ -14,7 +14,7 @@ class AddUsuariosExalumnosSeeder extends Seeder
     {
 
 
-        User::findOrCreateUserWithRole('pro0318','CYNTHIA ESTHER','ALARCON','MUGICA','','','AV. NUEVA IMAGEN ESQUINA CON AV. SAMARKANDA','EDIFICIO G4','DEPTO. 104','CONJUNTO HABITACIONAL NUEVA IMAGEN COL. TABASCO 2000','VILLAHERMOSA','','','','','0','liberiasum@gmail.com','9933093985','',1508,1,'','7|21');
+//        User::findOrCreateUserWithRole('pro0318','CYNTHIA ESTHER','ALARCON','MUGICA','','','AV. NUEVA IMAGEN ESQUINA CON AV. SAMARKANDA','EDIFICIO G4','DEPTO. 104','CONJUNTO HABITACIONAL NUEVA IMAGEN COL. TABASCO 2000','VILLAHERMOSA','','','','','0','liberiasum@gmail.com','9933093985','',1508,1,'','7|21');
         User::findOrCreateUserWithRole('pro0106','SOFIA ELENA','ARIAS','HERNANDEZ','','','YUCATAN','8 MZA. 10','','REAL DE SAN JORGE E-3 COL. SABINA','VILLAHERMOSA','','','','','0','sofiaelena71@gmail','9931288215','',1361,1,'','18|20|21');
         User::findOrCreateUserWithRole('pro0108','LUIS','ARIAS','LOPEZ','','','CIRCUNVALACION POCHITOQUE','MZA. 7 LT 7','','FRACC. LA ISLA','CENTRO','86126','','','','1','luis_ariaslopez@hotmail.com','9931177519','',1359,1,'','21');
         User::findOrCreateUserWithRole('pro0109','VICENTA MARIA','BAEZA','ALEJANDRO','','','CARRETERA VILLAHERMOSA-TEAPA ','KM. 15','','CALLEJON BAEZA FRENTE A PARRILLA 2','VILLAHERMOSA','','','','','0','vicenta.baeza@hotmail.com','9932781654','',1358,1,'','21');

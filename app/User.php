@@ -35,16 +35,20 @@ class User extends Authenticatable implements MustVerifyEmail
         'fecha_nacimiento','genero',
         'root','filename','filename_png','filename_thumb',
         'empresa_id','iduser_ps','status_user','ip','host',
-
     ];
 
     protected $hidden = ['password', 'remember_token',];
     protected $casts = ['admin'=>'boolean','alumno'=>'boolean','foraneo'=>'boolean','exalumno'=>'boolean','credito'=>'boolean',];
 
-    public function newEloquentBuilder($query)
-    {
+    public function newEloquentBuilder($query){
         return new UserQuery($query);
     }
+
+    public function scopeFilterBy($query, $filters){
+        return (new UserFilter())->applyTo($query, $filters);
+//        return $this->traitFilterBy($filters);
+    }
+
 
     public function permissions() {
         return $this->belongsToMany(Permission::class);

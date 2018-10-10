@@ -14,7 +14,14 @@ use Illuminate\Database\Eloquent\Builder;
 
 class UserQuery extends Builder
 {
-    use FiltersQuerys;
+//    use FiltersQuerys {
+//        filterBy as traitFilterBy;
+//    }
+
+    public function filterBy(array $filters){
+        return (new UserFilter())->applyTo($this, $filters);
+//        return $this->traitFilterBy($filters);
+    }
 
     public function findByEmail($email){
         return $this->where( 'email' , $email )->first();
@@ -22,8 +29,8 @@ class UserQuery extends Builder
 
     public function filterRules(): array{
         return [
-            'search' => 'filled',
-            'roles' => 'in:Admin,Invitado',
+//            'search' => 'filled',
+//            'roles' => '',
         ];
     }
 

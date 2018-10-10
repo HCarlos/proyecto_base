@@ -17,7 +17,6 @@ class UserFilter extends QueryFilter{
         ];
     }
 
-//    public function filterBySearch($query, $search){
     public function search($query, $search){
         if (is_null($search) ) {
             return $query;
@@ -37,7 +36,6 @@ class UserFilter extends QueryFilter{
     }
 
 
-//    public function filterByRoles($query, $roles){
     public function roles($query, $roles){
         if (is_null($roles) ) {
             return $query;

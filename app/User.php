@@ -2,11 +2,11 @@
 
 namespace App;
 
-use App\Filters\User\UserImport;
 use App\Filters\User\UserQuery;
 use App\Models\User\UserAdress;
 use App\Models\User\UserBecas;
 use App\Models\User\UserDataExtend;
+use App\Traits\User\UserImport;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;

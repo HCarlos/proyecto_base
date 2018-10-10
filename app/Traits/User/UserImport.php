@@ -6,7 +6,7 @@
  * Time: 02:46 PM
  */
 
-namespace App\Filters\User;
+namespace App\Traits\User;
 
 
 use Illuminate\Support\Facades\DB;
@@ -24,7 +24,9 @@ trait UserImport
         string $roles
     ){
         $result = false;
-//        $user = static::where('username', $username)->where('email', $email)->first();
+
+        //        $user = static::where('username', $username)->where('email', $email)->first();
+
         $user = static::where('username', $username)->first();
         if (!$user) {
             if ($email == ''){

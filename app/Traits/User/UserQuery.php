@@ -6,28 +6,20 @@
  * Time: 02:51 PM
  */
 
-namespace App\Filters\User;
-
+namespace App\Traits\User;
 
 use App\Traits\User\FiltersQuerys;
 use Illuminate\Database\Eloquent\Builder;
 
 class UserQuery extends Builder
 {
-//    use FiltersQuerys {
-//        filterBy as traitFilterBy;
-//    }
-
-//    public function filterBy(array $filters){
-//        return (new UserFilter())->applyTo($this, $filters);
-//    }
+    use FiltersQuerys;
 
     public function findByEmail($email){
         return $this->where( 'email' , $email )->first();
     }
 
     public function filterRules(): array{
-        dd("XXX");
         return [
             'search' => 'filled',
             'roles' => '',

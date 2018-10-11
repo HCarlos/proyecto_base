@@ -9,7 +9,9 @@
 
 namespace App\Filters\User;
 
-class UserFilter extends QueryFilter{
+use App\Filters\Common\QueryFilter;
+
+class UserFilter extends QueryFilter {
 
     public function rules(): array{
         return [

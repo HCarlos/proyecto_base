@@ -3,11 +3,11 @@
 namespace App;
 
 use App\Filters\User\UserFilter;
-use App\Filters\User\UserQuery;
 use App\Models\User\UserAdress;
 use App\Models\User\UserBecas;
 use App\Models\User\UserDataExtend;
 use App\Traits\User\UserImport;
+use App\Traits\User\UserQuery;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -48,7 +48,6 @@ class User extends Authenticatable implements MustVerifyEmail
     public function scopeFilterBy($query, $filters){
         return (new UserFilter())->applyTo($query, $filters);
     }
-
 
     public function permissions() {
         return $this->belongsToMany(Permission::class);

@@ -6,7 +6,7 @@
  * Time: 12:12 PM
  */
 
-namespace App\Filters\User;
+namespace App\Filters\Common;
 
 use Illuminate\Support\Facades\Validator;
 

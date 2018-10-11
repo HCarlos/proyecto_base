@@ -26,11 +26,13 @@ abstract class QueryFilter{
     }
 
     protected function applyFilter($query, $name, $value){
+
         if (method_exists($this, $name)) {
             $this->$name($query, $value);
         } else {
             $query->where($name, $value);
         }
+
     }
 
     public function valid(){

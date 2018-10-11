@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Filters\User\UserFilter;
 use App\Filters\User\UserQuery;
 use App\Models\User\UserAdress;
 use App\Models\User\UserBecas;
@@ -46,7 +47,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function scopeFilterBy($query, $filters){
         return (new UserFilter())->applyTo($query, $filters);
-//        return $this->traitFilterBy($filters);
     }
 
 

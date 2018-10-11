@@ -1,4 +1,5 @@
-<?php
+<?php /** @noinspection PhpExpressionResultUnusedInspection */
+
 /**
  * Created by PhpStorm.
  * User: devch
@@ -8,8 +9,8 @@
 
 namespace App\Filters\User;
 
-
 class UserFilter extends QueryFilter{
+
     public function rules(): array{
         return [
             'search' => 'filled',
@@ -18,37 +19,28 @@ class UserFilter extends QueryFilter{
     }
 
     public function search($query, $search){
-        if (is_null($search) ) {
-            return $query;
-        }
+        if (is_null($search) || empty ($search)) {return $query;}
 
-        if (empty ($search)) {
-            return $query;
-        }
         $search = strtoupper($search);
-        return $query
-            ->whereRaw("CONCAT(ap_paterno,' ',ap_materno,' ',nombre) like ?", "%{$search}%")
+        return $query->orWhereRaw("CONCAT(ap_paterno,' ',ap_materno,' ',nombre) like ?", "%{$search}%")
             ->orWhereRaw("UPPER(username) like ?", "%{$search}%")
             ->orWhereHas('roles', function ($q) use ($search) {
                 $q->whereRaw("UPPER(name) like ?", "%{$search}%");
             })
-            ->orWhere('id', 'like',"%{$search}%");
+            ->orWhere('id', 'like', "%{$search}%");
+
     }
 
 
     public function roles($query, $roles){
-        if (is_null($roles) ) {
-            return $query;
-        }
 
-        if (empty ($roles)) {
-            $roles = [];
-        }
+        if (is_null($roles) ) {return $query;}
+        if (empty ($roles)) {$roles = [];}
 
-        return $query
-            ->whereHas('roles', function ($q) use ($roles) {
-                $q->whereIn('role_id', $roles);
-            });
+        return $query->orWhereHas('roles', function ($q) use ($roles) {
+            $q->whereIn('role_id', $roles);
+        });
+
     }
 
 }

@@ -171,6 +171,7 @@ return [
         Styde\Html\HtmlServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         App\Providers\ValidatorServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
 
     ],
 
@@ -227,6 +228,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'Access' => Styde\Html\Facades\Access::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
 
     ],
 

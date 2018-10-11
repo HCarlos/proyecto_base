@@ -18,19 +18,19 @@ class UserQuery extends Builder
 //        filterBy as traitFilterBy;
 //    }
 
-    public function filterBy(array $filters){
-        return (new UserFilter())->applyTo($this, $filters);
-//        return $this->traitFilterBy($filters);
-    }
+//    public function filterBy(array $filters){
+//        return (new UserFilter())->applyTo($this, $filters);
+//    }
 
     public function findByEmail($email){
         return $this->where( 'email' , $email )->first();
     }
 
     public function filterRules(): array{
+        dd("XXX");
         return [
-//            'search' => 'filled',
-//            'roles' => '',
+            'search' => 'filled',
+            'roles' => '',
         ];
     }
 
